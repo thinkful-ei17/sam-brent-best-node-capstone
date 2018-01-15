@@ -1,0 +1,33 @@
+{
+  "name": "brainstorm",
+  "version": "1.0.0",
+  "description": "restaurant review/reccomendation/dream list",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thinkful-ei17/sam-brent-best-node-capstone.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thinkful-ei17/sam-brent-best-node-capstone/issues"
+  },
+  "homepage": "https://github.com/thinkful-ei17/sam-brent-best-node-capstone#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "faker": "^4.1.0",
+    "mongoose": "^4.13.9",
+    "morgan": "^1.9.0",
+    "uuid": "^3.1.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^3.0.0",
+    "mocha": "^4.1.0"
+  }
+}
