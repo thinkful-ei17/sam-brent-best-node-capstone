@@ -1,0 +1,46 @@
+const users = [
+  {
+    id: 100,
+    username: "Sam Gould",
+    favorites: [
+      {restaurant_id: 456, notes: "Really enjoyed the burger of the day",rating: 10
+      },
+      {restaurant_id: 789, notes: "Wouldn't reccommend ",rating: 9
+      }
+    ]
+  },
+  {
+    id: 101,
+    username: "Brent Guistwite",
+    favorites: [
+      {restaurant_id: 456, notes: "lorem ipsum",rating: 10
+      },
+      {restaurant_id: 789, notes: "fsdfdlorem ipsum",rating: 9
+      }
+    ]
+  },
+  {
+    id: 102,
+    username: "Ruggles Gould",
+    favorites: [
+      {restaurant_id: 456, notes: "lorem ipsum",rating: 10
+      },
+      {restaurant_id: 789, notes: "fsdfdlorem ipsum",rating: 9
+      }
+    ]
+  }
+]
+
+  const restaurants = [
+  {
+      id: 456,
+      name: "bobs burgers",
+      cuisine: "burgers"
+  },
+  {
+      id: 789,
+      name: "who cares",
+      cuisine: "does it matter"
+  }
+]
+//populate
