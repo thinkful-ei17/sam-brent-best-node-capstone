@@ -32,3 +32,5 @@ Users should be able to add favorite/reccommended dishes
 
 Users should be able to get directions to restaurant?
 
+Presentation Support:
+http://thinkful.slides.com/thinkful/demo-deck
