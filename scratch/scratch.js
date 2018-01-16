@@ -1,5 +1,16 @@
 'use strict';
 
+//POST endpoint
+
+//place.name(string)
+//place.formatted_address(string)
+//place.formatted_phone_number(string)
+//place.opening_hours.weekday_text(array 0-7 mon-sun reads "Monday: 11:00AM-10:00PM")
+//place.place_id(string)
+//place.price_level(int)
+//place.website(string)
+//place.url?(string)
+
 
 
 ///////////////////////////////////////////////////
@@ -57,10 +68,7 @@ function initMap() {
             content:[place.name,place.formatted_address]
           };
           addMarker(info);
-          // infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-          //   'Place ID: ' + place.place_id + '<br>' +
-          //   place.formatted_address + '</div>' + '<a href="#">add to favorites<a>');
-          // infowindow.open(map, this);
+         
         });
       }
     });
