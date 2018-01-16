@@ -140,7 +140,8 @@ const dummyData = [
 const store = new Store();
 const render = new Render(store);
 
-$(() => {
-  store.data = dummyData[1];
-  render.restaurantList();
-});
+$(() => {});
+
+store.data = dummyData[1];
+store.view = 'list';
+render.render(store);

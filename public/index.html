@@ -44,8 +44,29 @@
     <input type="submit" id="js-filter-button" value="Filter">
   </form>
 
-  <ul class="restaurant-list js-restaurant-list">
+  <ul id="list" class="view restaurant-list js-restaurant-list">
   </ul>
+
+  <section id="detail" class="view">
+			<div>
+				<span class="name" aria-label="Name"></span>
+			</div>
+			<div>
+				<span class="notes" aria-label="Notes"></span>
+			</div>
+			<a href="" class="edit">Edit</a>
+			<a href="" class="remove">Remove</a>
+  		<a href="" class="viewList">&lt; Back to List Results </a>
+	</section>
+
+  <form id="edit" class="view">
+    <div class="js-uneditable"></div>
+   
+    <label for="notes">Notes</label>
+    <textarea rows="4" cols="50" name="content" id="notes"></textarea>
+
+    <button type="submit">Update</button>
+  </form>
 
 </body>
 
