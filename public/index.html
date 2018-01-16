@@ -8,8 +8,37 @@
   <title>Document</title>
 </head>
 <body>
-  <p>Hello World!</p>
-  <p>It me</p>
+  
+  <h1 role="header">Restaurant Wishlist</h1>
+    <form>
+      <label for="type-of-food-search">What are you in the mood for?</label> 
+      <br>
+      <input type="text" placeholder="e.g. Sushi" id="type-of-food-search">
+      <label for="location-search">in</label>
+      <input type="text" placeholder="e.g. San Francisco, CA" id="location-search">
+      
+      <input type="submit" id="js-search-button" value="Search">
+      <br>
+      <input type="checkbox" id="map-view">
+      <label for="map-view">Map View</label>
+
+      <input type="checkbox" id="list-view">
+      <label for="list-view">List View</label>
+    </form>
+    <form>
+      <label for="visited-status">Something Old or Something New?</label>
+      <select name="status" id="visited-status" size=1>
+            <option selected value="all">Doesn't Matter</option>
+            <option value="new">New, Obviously</option>
+            <option value="visited">Only Old Favorites</option>
+        </select>
+
+        <input type="submit" id="js-filter-button" value="Filter">
+    </form>
+
+    <section class="restaurant-list js-restaurant-list">
+
+    </section>
 
   <script 
     src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
