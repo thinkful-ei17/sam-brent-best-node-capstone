@@ -1,62 +1,99 @@
-// 'use strict';
+'use strict';
 
 
-// const key = 'AIzaSyDZ10goBCSJwuHGlVH3ESSufQeqYBuh1sU';
-// const URL = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDZ10goBCSJwuHGlVH3ESSufQeqYBuh1sU&callback=initMap';
 
-// // var map;
-// // function initMap() {
-// //   map = new google.maps.Map(document.getElementById('map'), {
-// //     center: { lat: -34.397, lng: 150.644 },
-// //     zoom: 12
-// //   });
-// // }
+///////////////////////////////////////////////////
+const key = 'AIzaSyDZ10goBCSJwuHGlVH3ESSufQeqYBuh1sU';
 
-// function initialize() {
-//   // Create a map to show the results, and an info window to
-//   // pop up if the user clicks on the place marker.
-//   var pyrmont = new google.maps.LatLng(-33.8665, 151.1956);
+function initMap() {
+  var map = new google.maps.Map(document.getElementById('map'), {
+    center: {
+      lat: 29.651634, lng: -82.324829 },
+    zoom: 13
+  });
 
-//   var map = new google.maps.Map(document.getElementById('map'), {
-//     center: pyrmont,
-//     zoom: 15,
-//     scrollwheel: false
-//   });
-//   var infowindow = new google.maps.InfoWindow();
-//   var service = new google.maps.places.PlacesService(map);
+  function addMarker(info) {
+    console.log(info);
+    console.log('this is running');
+    var marker = new google.maps.Marker({
+      position: info.position,
+      map: map,
+      content:[info.content]
+    });
+    infowindow.setContent(`<div><strong>${info.content}</strong></div>`);
+    infowindow.open(map, this);
+  }
 
-//   document.getElementById('submit').addEventListener('click', function () {
-//     placeDetailsByPlaceId(service, map, infowindow);
-//   });
-// }
+  var input = document.getElementById('pac-input');
 
-// function placeDetailsByPlaceId(service, map, infowindow) {
-//   // Create and send the request to obtain details for a specific place,
-//   // using its Place ID.
-//   var request = {
-//     placeId: document.getElementById('place-id').value
-//   };
+  var autocomplete = new google.maps.places.Autocomplete(input);
+  autocomplete.bindTo('bounds', map);
 
-//   service.getDetails(request, function (place, status) {
-//     if (status == google.maps.places.PlacesServiceStatus.OK) {
-//       // If the request succeeds, draw the place location on the map
-//       // as a marker, and register an event to handle a click on the marker.
-//       var marker = new google.maps.Marker({
-//         map: map,
-//         position: place.geometry.location
-//       });
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
-//       google.maps.event.addListener(marker, 'click', function () {
-//         infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-//           'Place ID: ' + place.place_id + '<br>' +
-//           place.formatted_address + '</div>');
-//         infowindow.open(map, this);
-//       });
+  var infowindow = new google.maps.InfoWindow();
+  var infowindowContent = document.getElementById('infowindow-content');
+  infowindow.setContent(infowindowContent);
+  var marker = new google.maps.Marker({
+    map: map
+  });
+  var service = new google.maps.places.PlacesService(map);
+  marker.addListener('click', function () {
+    infowindow.open(map, marker);
+    console.log('this is the marker', marker);
+    service.getDetails({
+      placeId: marker.place.placeId
+    }, function (place, status) {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        var marker = new google.maps.Marker({
+          map: map,
+          position: place.geometry.location
+        });
+        console.log('this is place', place);
+        google.maps.event.addListener(marker, 'click', function () {
+          console.log(place.geometry.location.lat());
+          const info = {
+            position:place.geometry.location,
+            content:[place.name,place.formatted_address]
+          };
+          addMarker(info);
+          // infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+          //   'Place ID: ' + place.place_id + '<br>' +
+          //   place.formatted_address + '</div>' + '<a href="#">add to favorites<a>');
+          // infowindow.open(map, this);
+        });
+      }
+    });
+  });
 
-//       map.panTo(place.geometry.location);
-//     }
-//   });
-// }
 
-// // Run the initialize function when the window has finished loading.
-// google.maps.event.addDomListener(window, 'load', initialize);
+
+
+  autocomplete.addListener('place_changed', function () {
+    infowindow.close();
+    var place = autocomplete.getPlace();
+    if (!place.geometry) {
+      return;
+    }
+
+    if (place.geometry.viewport) {
+      map.fitBounds(place.geometry.viewport);
+    } else {
+      map.setCenter(place.geometry.location);
+      map.setZoom(17);
+    }
+
+    // Set the position of the marker using the place ID and location.
+    marker.setPlace({
+      placeId: place.place_id,
+      location: place.geometry.location
+    });
+    marker.setVisible(true);
+
+    infowindowContent.children['place-name'].textContent = place.name; 
+    infowindowContent.children['place-id'].textContent = place.place_id;
+    infowindowContent.children['place-address'].textContent =
+      place.formatted_address;
+    infowindow.open(map, marker);
+  });
+}
