@@ -5,8 +5,10 @@ ul {
 li {
     border: solid 1px gray;
     padding: 10px;
+    margin: 10px;
 }
 
 .restaurant-name {
     font-size: 20px;
+    font-weight: bold;
 }

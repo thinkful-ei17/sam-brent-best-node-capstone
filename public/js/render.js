@@ -8,10 +8,20 @@ class Render {
   }
 
   generateRestaurantElement(restaurant) {
-    return `
-    <li class="js-restaurant-id-element ${restaurant._id}">
-      <div class="restaurant-name">${restaurant.name}</div> 
+    if (restaurant.notes){
+      return `
+    <li class="js-restaurant-id-element ${restaurant.restaurant_id._id}">
+      <div class="restaurant-name">${restaurant.restaurant_id.name}</div>
+      <div class="restaurant-notes">Notes: ${restaurant.notes}</div>
     </li>`;
+    } else {
+      return `
+      <li class="js-restaurant-id-element ${restaurant.restaurant_id._id}">
+        <div class="restaurant-name">${restaurant.restaurant_id.name}</div>
+        <div class="restaurant-notes">Notes:</div>
+      </li>`;
+    }
+    
   }
 
   restaurantList() {
