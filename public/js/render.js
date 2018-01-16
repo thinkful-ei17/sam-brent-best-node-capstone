@@ -5,6 +5,7 @@ class Render {
 
   constructor(store) {
     this.store = store;
+    this.api = api;
   }
 
   renderPage(store) {
