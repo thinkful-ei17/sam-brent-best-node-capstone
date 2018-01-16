@@ -1,48 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link href="styles.css" rel="stylesheet" type="text/css" />
-  <title>Document</title>
+  <title>Restaurant Wishlist</title>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous" defer></script>
+  <script src="js/store.js" defer></script>
+  <script src="js/render.js" defer></script>
+  <script src="js/app.js" defer></script>
 </head>
+
 <body>
-  
+
   <h1 role="header">Restaurant Wishlist</h1>
-    <form>
-      <label for="type-of-food-search">What are you in the mood for?</label> 
-      <br>
-      <input type="text" placeholder="e.g. Sushi" id="type-of-food-search">
-      <label for="location-search">in</label>
-      <input type="text" placeholder="e.g. San Francisco, CA" id="location-search">
-      
-      <input type="submit" id="js-search-button" value="Search">
-      <br>
-      <input type="checkbox" id="map-view">
-      <label for="map-view">Map View</label>
 
-      <input type="checkbox" id="list-view">
-      <label for="list-view">List View</label>
-    </form>
-    <form>
-      <label for="visited-status">Something Old or Something New?</label>
-      <select name="status" id="visited-status" size=1>
-            <option selected value="all">Doesn't Matter</option>
-            <option value="new">New, Obviously</option>
-            <option value="visited">Only Old Favorites</option>
-        </select>
+  <form>
+    <label for="type-of-food-search">What are you in the mood for?</label>
+    <br>
+    <input type="text" placeholder="e.g. Sushi" id="type-of-food-search">
+    <label for="location-search">in</label>
+    <input type="text" placeholder="e.g. San Francisco, CA" id="location-search">
 
-        <input type="submit" id="js-filter-button" value="Filter">
-    </form>
+    <input type="submit" id="js-search-button" value="Search">
+    <br>
+    <input type="checkbox" id="map-view">
+    <label for="map-view">Map View</label>
 
-    <section class="restaurant-list js-restaurant-list">
+    <input type="checkbox" id="list-view">
+    <label for="list-view">List View</label>
+  </form>
+  <form>
+    <label for="visited-status">Something Old or Something New?</label>
+    <select name="status" id="visited-status" size=1>
+      <option selected value="all">Doesn't Matter</option>
+      <option value="new">New, Obviously</option>
+      <option value="visited">Only Old Favorites</option>
+    </select>
 
-    </section>
+    <input type="submit" id="js-filter-button" value="Filter">
+  </form>
 
-  <script 
-    src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-    crossorigin="anonymous"></script>
-  <script src="/app.js"></script>
+  <ul class="restaurant-list js-restaurant-list">
+  </ul>
+
 </body>
+
 </html>

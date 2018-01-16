@@ -1,0 +1,12 @@
+ul {
+    list-style-type: none;
+}
+
+li {
+    border: solid 1px gray;
+    padding: 10px;
+}
+
+.restaurant-name {
+    font-size: 20px;
+}
