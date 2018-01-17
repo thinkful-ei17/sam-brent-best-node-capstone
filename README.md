@@ -35,6 +35,9 @@ Users should be able to get directions to restaurant?
 Presentation Support:
 http://thinkful.slides.com/thinkful/demo-deck
 
+Marker Clustering:
+https://developers.google.com/maps/documentation/javascript/marker-clustering
+
 Data were grabbing from Google 
 
 //place.name(string)
