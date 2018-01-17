@@ -86,7 +86,11 @@ router.post('/', (req, res) => {
 //     });
 // });
 
+
+
+//Add restaurant to "wishlist"
 router.put('/:id', (req, res) => {
+  //Saving google maps restaurant data to database
   Restaurant
     .findOneAndUpdate(
       {
@@ -103,23 +107,25 @@ router.put('/:id', (req, res) => {
       })
     .then(results => {
       console.log(results._id);
+      //add reference to restaurant in user collection
       return User
         .findByIdAndUpdate(
           req.params.id,
           {
-            $push: {wishlist: {
-              restaurant_id: results._id,
-              notes: req.body.notes,
-              rating: null
-            }}
+            $push: {
+              wishlist: {
+                restaurant_id: results._id,
+                notes: req.body.notes,
+                rating: null
+              }}
           },
           {
             new: true
           }
-
         );
     })
-    .then(res=>console.log(res));
+    .then(updatedPost => res.status(204).end())
+    .catch(err => res.status(500).json({ message: 'Something went wrong' }));
 });
   
 
