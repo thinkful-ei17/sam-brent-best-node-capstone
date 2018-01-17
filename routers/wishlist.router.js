@@ -86,6 +86,43 @@ router.post('/', (req, res) => {
 //     });
 // });
 
+router.put('/:id', (req, res) => {
+  Restaurant
+    .findOneAndUpdate(
+      {
+        placeId: req.body.placeId
+      },
+      {
+        name: req.body.name,
+        address: req.body.formatted_address,
+        placeId: req.body.placeId,
+      },
+      {
+        upsert: true,
+        new:true
+      })
+    .then(results => {
+      console.log(results._id);
+      return User
+        .findByIdAndUpdate(
+          req.params.id,
+          {
+            $push: {wishlist: {
+              restaurant_id: results._id,
+              notes: req.body.notes,
+              rating: null
+            }}
+          },
+          {
+            new: true
+          }
+
+        );
+    })
+    .then(res=>console.log(res));
+});
+  
+
 // Delete User Account
 router.delete('/:id', (req, res) => {
   User

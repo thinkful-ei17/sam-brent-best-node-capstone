@@ -5,6 +5,8 @@ mongoose.Promise = global.Promise;
 
 const restaurantSchema = new mongoose.Schema({
   name: { type: String, required: true },
+  placeId: String,
+  address: String
 });
 
 const Restaurant = mongoose.model('Restaurant', restaurantSchema);
