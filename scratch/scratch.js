@@ -103,11 +103,11 @@ function initMap() {
     ///render funcs data attrs
     //return `<a href="#" data-place-id="${place.place_id}">Click here to insert the place</a>`
     // infowindow.setContent(renderInfoWindowContent(place));
-
-    infowindowContent.querySelector('#place-name').textContent = place.name; 
-    infowindowContent.querySelector('#place-id').textContent = place.place_id;
-    infowindowContent.querySelector('#place-address').textContent =
-      place.formatted_address;
+    infowindow.setContent('<div><strong>HELLO WORLD</strong></div>');
+    // infowindowContent.querySelector('#place-name').textContent = place.name; 
+    // infowindowContent.querySelector('#place-id').textContent = place.place_id;
+    // infowindowContent.querySelector('#place-address').textContent =
+    //   place.formatted_address;
     infowindow.open(map, marker);
   });
 }
