@@ -90,23 +90,30 @@ router.post('/', (req, res) => {
 
 //Add restaurant to "wishlist"
 router.put('/:id', (req, res) => {
+  const {name, placeId, formatted_address, formatted_phone_number, opening_hours, notes} = req.body;
   //Saving google maps restaurant data to database
   Restaurant
     .findOneAndUpdate(
       {
-        placeId: req.body.placeId
+        placeId
       },
       {
-        name: req.body.name,
-        address: req.body.formatted_address,
-        placeId: req.body.placeId,
+        name,
+        placeId,
+        formatted_address,
+        formatted_phone_number,
+        opening_hours: opening_hours.weekday_text,
+        position: {
+          lat: req.body.geometry.location.lat(),
+          lng: req.body.geometry.location.lng()
+        }
       },
       {
         upsert: true,
         new:true
       })
     .then(results => {
-      console.log(results._id);
+      console.log(results);
       //add reference to restaurant in user collection
       return User
         .findByIdAndUpdate(
@@ -115,7 +122,7 @@ router.put('/:id', (req, res) => {
             $push: {
               wishlist: {
                 restaurant_id: results._id,
-                notes: req.body.notes,
+                notes,
                 rating: null
               }}
           },
@@ -124,8 +131,11 @@ router.put('/:id', (req, res) => {
           }
         );
     })
-    .then(updatedPost => res.status(204).end())
-    .catch(err => res.status(500).json({ message: 'Something went wrong' }));
+    .then(results => res.status(200).json(results))
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ message: 'Something went wrong' });
+    });
 });
   
 
