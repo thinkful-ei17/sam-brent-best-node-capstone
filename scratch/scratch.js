@@ -98,7 +98,8 @@ function initMap() {
       location: place.geometry.location
     });
     marker.setVisible(true);
-    console.log(place.name);
+    console.log(place.geometry.location.lat(),
+      place.geometry.location.lng());
 
     ///render funcs data attrs
     //return `<a href="#" data-place-id="${place.place_id}">Click here to insert the place</a>`
