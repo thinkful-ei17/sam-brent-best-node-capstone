@@ -70,6 +70,22 @@ router.post('/', (req, res) => {
     });
 });
 
+// router.put('/:id/:restaurant_id', (req, res) => {
+//   User
+//     .findOneAndUpdate(
+//       { _id: req.params.id }, 
+//       { 'restaurant_id': req.params.restaurant_id }, 
+//       { $set: { 'wishlist' : {} } }
+//     )
+//     .then(restaurant => {
+//       return res.status(200).json(restaurant);
+//     })
+//     .catch(err => {
+//       console.error(err);
+//       res.status(500).json({ message: 'Internal Server Error' });
+//     });
+// });
+
 // Delete User Account
 router.delete('/:id', (req, res) => {
   User
@@ -81,6 +97,7 @@ router.delete('/:id', (req, res) => {
     });
 });
 
+// Delete a specific restaurant from a specific user's wishlist
 router.delete('/:id/:restaurant_id', (req, res) => {
   User
     .findOneAndUpdate(
