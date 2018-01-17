@@ -34,3 +34,36 @@ Users should be able to get directions to restaurant?
 
 Presentation Support:
 http://thinkful.slides.com/thinkful/demo-deck
+
+Data were grabbing from Google 
+
+//place.name(string)
+//place.formatted_address(string)
+//place.formatted_phone_number(string)
+//place.opening_hours.weekday_text(array 0-7 mon-sun reads "Monday: 11:00AM-10:00PM")
+//place.place_id(string)
+//place.price_level(int)
+//place.website(string)
+//place.url?(string)
+//place.geometry.location?(lat,lng)
+
+const props = {
+  location:{
+    lng:1,
+    lat:-2
+  },
+  map:samsMap,
+  info:[
+    place.name,
+    place.formatted_address,
+    place.formatted_phone_number,
+    place.opening_hours.weekday_text[what day of the week is it?]**OPTIONAL**
+  ]
+}
+
+function addMarker(properties object){
+  
+}
+
+
+
