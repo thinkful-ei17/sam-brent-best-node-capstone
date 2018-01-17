@@ -34,9 +34,9 @@ router.get('/:id', (req, res) => {
 });
 
 // Get a Specific Restaurant on a Specific User's Wishlist
-router.get('/:id/:restaurant_id', (req, res) => {
+router.get('/:id/wishlist/:wishlist_id', (req, res) => {
   User
-    .findOne({ _id: req.params.id }, { 'wishlist': { $elemMatch: { 'restaurant_id': req.params.restaurant_id } } })
+    .findOne({ _id: req.params.id }, { 'wishlist': { $elemMatch: { '_id': req.params.wishlist_id } } })
     .then(restaurant => {
       return res.json(restaurant.wishlist[0]);
     })
@@ -70,21 +70,25 @@ router.post('/', (req, res) => {
     });
 });
 
-// router.put('/:id/:restaurant_id', (req, res) => {
-//   User
-//     .findOneAndUpdate(
-//       { _id: req.params.id }, 
-//       { 'restaurant_id': req.params.restaurant_id }, 
-//       { $set: { 'wishlist' : {} } }
-//     )
-//     .then(restaurant => {
-//       return res.status(200).json(restaurant);
-//     })
-//     .catch(err => {
-//       console.error(err);
-//       res.status(500).json({ message: 'Internal Server Error' });
-//     });
-// });
+// Update a wishlist entry
+router.put('/:id/wishlist/:wishlist_id', (req, res) => {
+  User
+    .findOneAndUpdate(
+      { _id: req.params.id, 'wishlist._id': req.params.wishlist_id }, 
+      { $set: { 
+        'wishlist.$.rating': req.body.rating,
+        'wishlist.$.notes': req.body.notes
+      } },
+      {new: true}
+    )
+    .then(restaurant => {
+      return res.status(200).json(restaurant);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ message: 'Internal Server Error' });
+    });
+});
 
 // Delete User Account
 router.delete('/:id', (req, res) => {
@@ -98,11 +102,11 @@ router.delete('/:id', (req, res) => {
 });
 
 // Delete a specific restaurant from a specific user's wishlist
-router.delete('/:id/:restaurant_id', (req, res) => {
+router.delete('/:id/wishlist/:wishlist_id', (req, res) => {
   User
     .findOneAndUpdate(
       { _id: req.params.id }, 
-      { $pull: { 'wishlist': { 'restaurant_id': req.params.restaurant_id } } }, 
+      { $pull: { 'wishlist': { '_id': req.params.wishlist_id } } }, 
       { new: true })
     .then(() => {
       return res.status(200).send('Successfully Deleted');
