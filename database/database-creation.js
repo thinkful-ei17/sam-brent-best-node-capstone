@@ -1,5 +1,10 @@
 'use strict';
 
+const mongoose = require('mongoose');
+
+const { DATABASE_URL, PORT } = require('../config');
+const { Restaurant, User } = require('../models');
+
 mongoose.connect(DATABASE_URL, { useMongoClient: true })
   .then(function () {
     mongoose.connection.db.dropDatabase();
