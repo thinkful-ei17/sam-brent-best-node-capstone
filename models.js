@@ -6,7 +6,14 @@ mongoose.Promise = global.Promise;
 const restaurantSchema = new mongoose.Schema({
   name: { type: String, required: true },
   placeId: String,
-  address: String
+  address: String,
+  phone_number: String,
+  hours:[String],
+  coords:{
+    lat:Number,
+    lng:Number
+  }
+
 });
 
 const Restaurant = mongoose.model('Restaurant', restaurantSchema);
