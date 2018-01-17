@@ -5,7 +5,6 @@ class Render {
 
   constructor(store) {
     this.store = store;
-    this.api = api;
   }
 
   renderPage(store) {
@@ -24,7 +23,6 @@ class Render {
 
   renderRestaurantList(store) {
     const listOfRestaurants = store.data.wishlist.map((restaurant) => this.generateRestaurantElement(restaurant));
-    console.log('I am running');
     $('.js-restaurant-list').html(listOfRestaurants.join(''));
   }
 
@@ -35,12 +33,12 @@ class Render {
   //   el.find('[name=notes]').val(item.notes);
   // }
 
-  renderDetail(store) {
-    const el = $(`#${store.view}`);
-    const item = store.item;
-    el.find('.name').text(item.name);
-    el.find('.notes').text(item.notes);
-  }
+  // renderDetail(store) {
+  //   const el = $(`#${store.view}`);
+  //   const item = store.item;
+  //   el.find('.name').text(item.name);
+  //   el.find('.notes').text(item.notes);
+  // }
 
   render(store) {
     console.log(store);

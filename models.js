@@ -20,6 +20,17 @@ const userSchema = new mongoose.Schema({
   }]
 });
 
+userSchema.methods.serialize = function(){
+  return {
+    username: this.username,
+    firstName: this.firstName,
+    lastName: this.lastName,
+    wishlist: this.wishlist,
+    _id: this._id
+  // REMOVE _id FOR DEVELOPMENT ONLY
+  };
+};
+
 const User = mongoose.model('User', userSchema);
 
 module.exports = { Restaurant, User };
