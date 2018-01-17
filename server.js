@@ -8,8 +8,8 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 const { DATABASE_URL, PORT } = require('./config');
-
 const { Restaurant, User } = require('./models');
+const wishlistRouter = require('./routers/wishlist.router');
 
 const app = express();
 
@@ -17,48 +17,9 @@ app.use(morgan('common'));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-mongoose.connect(DATABASE_URL, { useMongoClient: true })
-  .then(function () {
-    mongoose.connection.db.dropDatabase();
-
-    const users = User.create([
-      {
-        username: 'sam', firstName: 'Sam', lastName: 'Gould',
-        wishlist: [
-          { name: 'Alden and Harlow', rating: 5 },
-          { name: 'Fresca', rating: 4 },
-          { name: 'Burma Superstar', rating: 5 }
-        ]
-      },
-      {
-        username: 'brent', firstName: 'Brent', lastName: 'Guistwite',
-        wishlist: [
-          { name: 'Fresca',  rating: 5 },
-          { name: 'French Luandry' },
-          { name: 'Burma Superstar', rating: 5 }
-        ]
-      },
-      {
-        username: 'ruggs', firstName: 'Ruggles', lastName: 'Gould',
-        wishlist: [
-          { name: 'Alden and Harlow' },
-          { name: 'Top of the Hub' },
-          { name: 'Dig In' }
-        ]
-      }
-    ]);
-    return users;
-  })
-  .then(results => {
-    console.log('new', JSON.stringify(results, null, 2));
-  }).catch(err => {
-    console.log(err);
-  });
-
+app.use('/wishlist', wishlistRouter);
 
 let server;
-
 
 function runServer(databaseUrl = DATABASE_URL, port = PORT) {
   return new Promise((resolve, reject) => {
