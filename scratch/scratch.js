@@ -48,6 +48,7 @@ function initMap() {
   var marker = new google.maps.Marker({
     map: map
   });
+  console.log(marker);
   var service = new google.maps.places.PlacesService(map);
   marker.addListener('click', function () {
     infowindow.open(map, marker);
@@ -97,10 +98,15 @@ function initMap() {
       location: place.geometry.location
     });
     marker.setVisible(true);
+    console.log(place.name);
 
-    infowindowContent.children['place-name'].textContent = place.name; 
-    infowindowContent.children['place-id'].textContent = place.place_id;
-    infowindowContent.children['place-address'].textContent =
+    ///render funcs data attrs
+    //return `<a href="#" data-place-id="${place.place_id}">Click here to insert the place</a>`
+    // infowindow.setContent(renderInfoWindowContent(place));
+
+    infowindowContent.querySelector('#place-name').textContent = place.name; 
+    infowindowContent.querySelector('#place-id').textContent = place.place_id;
+    infowindowContent.querySelector('#place-address').textContent =
       place.formatted_address;
     infowindow.open(map, marker);
   });
