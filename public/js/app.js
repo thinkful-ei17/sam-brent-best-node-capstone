@@ -2,7 +2,7 @@
 'use strict';
 
 
-const api = new Api('/wishlist');
+const api = new Api('/users');
 const store = new Store();
 const render = new Render(store);
 
