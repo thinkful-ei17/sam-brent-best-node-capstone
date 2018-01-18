@@ -67,6 +67,7 @@ function initMap() {
     //foreach items hour array append all
     function restaurantInfo(place) {
       store.place = place;
+      console.log(place);
       const hours = place.opening_hours.weekday_text;
       return (`<strong>${place.name}</strong><br><br>
         ${place.formatted_address}<br>

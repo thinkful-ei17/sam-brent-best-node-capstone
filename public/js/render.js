@@ -22,7 +22,11 @@ class Render {
   }
 
   renderRestaurantList(store) {
+    console.log('store',store);
+    
     const listOfRestaurants = store.data.wishlist.map((restaurant) => this.generateRestaurantElement(restaurant));
+    console.log('list', listOfRestaurants);
+    console.log(this);
     $('.js-restaurant-list').html(listOfRestaurants.join(''));
   }
 

@@ -18,7 +18,7 @@ class Api {
   }
 
   search(query = {}) {
-    const url = this._buildUrl(this.path, query);
+    const url = this._buildUrl('/users', query);
     return fetch(url, {
       method: 'GET',
       headers: {
@@ -26,4 +26,6 @@ class Api {
       }
     }).then(res => res.json());
   }
+
+
 }

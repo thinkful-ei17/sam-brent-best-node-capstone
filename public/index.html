@@ -7,11 +7,11 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link href="styles.css" rel="stylesheet" type="text/css" />
   <title>Restaurant Wishlist</title>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZ10goBCSJwuHGlVH3ESSufQeqYBuh1sU&libraries=places&callback=initMap">
-    </script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
       crossorigin="anonymous" defer></script>
-    <script src="/google-maps.js" defer></script>
+    <script src="js/google-maps.js" defer></script>
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZ10goBCSJwuHGlVH3ESSufQeqYBuh1sU&libraries=places&callback=initMap">
+    </script>
     <script src="js/api.js" defer></script>
     <script src="js/store.js" defer></script>
     <script src="js/render.js" defer></script>
@@ -37,14 +37,6 @@
   </div>
 
   <form>
-    <label for="type-of-food-search">What are you in the mood for?</label>
-    <br>
-    <input type="text" placeholder="e.g. Sushi" id="type-of-food-search">
-    <label for="location-search">in</label>
-    <input type="text" placeholder="e.g. San Francisco, CA" id="location-search">
-
-    <input type="submit" id="js-search-button" value="Search">
-    <br>
     <input type="checkbox" id="map-view">
     <label for="map-view">Map View</label>
 
@@ -58,7 +50,6 @@
       <option value="new">New, Obviously</option>
       <option value="visited">Only Old Favorites</option>
     </select>
-
     <input type="submit" id="js-filter-button" value="Filter">
   </form>
 
