@@ -1,10 +1,11 @@
 'use strict';
 
-let store = {};
+// let store = {};
 
 //once the maps api and places library loads
 //initMap gets called
 function initMap() {
+  console.log('helloworld');
   //where do we want the default city to be?
   const map = new google.maps.Map(document.getElementById('map'), {
     center: {
@@ -109,8 +110,8 @@ $('#whole-map').on('click', '.js-wishlist-button', function (event) {
   console.log(event);
   console.log(this);
   console.log(store.place);
-  api.saveToFavorites(store.place)
-    .then(${ this}.htmlupdatetext)
+  // api.saveToFavorites(store.place)
+  //   .then(${ this}.htmlupdatetext)
 });
 //hidden checkbox shows on success?
 
