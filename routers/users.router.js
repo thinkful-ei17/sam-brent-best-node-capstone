@@ -147,7 +147,7 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
   User
     .findByIdAndRemove(req.params.id)
-    .then(() => res.status(200).end())
+    .then(() => res.status(204).end())
     .catch(err => {
       console.error(err);
       res.status(500).json({ message: 'Internal Server Error' });
@@ -162,7 +162,7 @@ router.delete('/:id/wishlist/:wishlist_id', (req, res) => {
       { $pull: { 'wishlist': { '_id': req.params.wishlist_id } } }, 
       { new: true })
     .then(() => {
-      return res.status(200).send('Successfully Deleted');
+      return res.status(204).end();
     })
     .catch(err => {
       console.error(err);
