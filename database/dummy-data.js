@@ -1,6 +1,15 @@
 'use strict';
 
-const dummyData = [
+const restaurantDummyData = [
+  { _id: 'ccccccccccccccccccccccc1', name: 'Alden and Harlow' },
+  { _id: 'ccccccccccccccccccccccc2', name: 'Fresca' },
+  { _id: 'ccccccccccccccccccccccc3', name: 'Burma Superstar' },
+  { _id: 'ccccccccccccccccccccccc4', name: 'French Laundry' },
+  { _id: 'ccccccccccccccccccccccc5', name: 'Top of the Hub' },
+  { _id: 'ccccccccccccccccccccccc6', name: 'Dig In' }
+];
+
+const userDummyData = [
   {
     '_id': '5a5e3e8ab657a306280eaecc',
     'username': 'ruggs',
@@ -109,4 +118,4 @@ const dummyData = [
   }
 ];
 
-module.exports = dummyData;
+module.exports = { userDummyData, restaurantDummyData };
