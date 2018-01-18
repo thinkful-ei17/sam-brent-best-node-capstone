@@ -5,7 +5,6 @@ class Api {
 
   constructor(path, baseUrl = window.location.origin) {
     this.baseUrl = baseUrl;
-    this.path = path;
   }
 
   _buildUrl(path, query = {}) {
@@ -17,7 +16,7 @@ class Api {
     return url;
   }
 
-  search(query = {}) {
+  searchAll(query = {}) {
     const url = this._buildUrl('/users', query);
     return fetch(url, {
       method: 'GET',
@@ -27,5 +26,85 @@ class Api {
     }).then(res => res.json());
   }
 
+  searchOne(id, query = {}) {
+    const url = this._buildUrl(`/users/${id}`, query);
+    return fetch(url, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json'
+      }
+    }).then(res => res.json());
+  }
 
+  details(id, wishlist_id){
+    const url = this._buildUrl(`/users/${id}/wishlist/${wishlist_id}`);
+
+    return fetch(url, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json'
+      }
+    }).then(res => res.json());
+  }
+
+  create(user) {
+    const url = this._buildUrl('/users');
+
+    return fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: user ? JSON.stringify(user) : null
+    }).then(res => res.json());
+  }
+
+  createWishlistEntry(id, restaurant){
+    const url = this._buildUrl(`/users/${id}`);
+
+    return fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: restaurant ? JSON.stringify(restaurant) : null
+    }).then(res => res.json());
+  }
+  
+  updateWishlistEntry(id, entry) {
+    const url = this._buildUrl(`/users/${id}/wishlist/${entry._id}`);
+
+    return fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: entry ? JSON.stringify(entry) : null
+    }).then(res => res.json());
+  }
+  
+  removeUser(id) {
+    const url = this._buildUrl(`users/${id}`);
+
+    return fetch(url, {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json'
+      }
+    }).then(res => res.text());
+  }
+
+  removeWishlistEntry(id, entry) {
+    const url = this._buildUrl(`/users/${id}/wishlist/${entry._id}`);
+    
+    return fetch(url, {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json'
+      }
+    }).then(res => res.text());
+  }
 }
