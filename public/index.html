@@ -19,9 +19,17 @@
  </head>
 
 <body>
-
-  <h1 role="header">Restaurant Wishlist</h1>
-
+  <form>
+    <label for="user-name">Select user</label>
+    <select name="user" id="user-name" size=1>
+      <option selected value="all">Ruggles</option>
+      <option value="user">Sam</option>
+      <option value="user">Brent</option>
+    </select>
+    </form>
+  <div class="container">
+  <img src="/images/WishList-apps.gif">
+  </div>
   <div id="whole-map">
     <input id="pac-input" class="controls" type="text" placeholder="Enter a location">
     <div id="map"></div>
@@ -36,7 +44,7 @@
     </div>
   </div>
 
-  <form>
+  <form class="map-list-checkbox">
     <input type="checkbox" id="map-view">
     <label for="map-view">Map View</label>
 

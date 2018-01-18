@@ -1,3 +1,7 @@
+h1 {
+  text-align:center;
+}
+
 ul {
     list-style-type: none;
 }
@@ -6,6 +10,19 @@ li {
     border: solid 1px gray;
     padding: 10px;
     margin: 10px;
+}
+
+.container {
+width: 20%;
+height: 30%;    
+margin:auto;
+
+}
+
+img {
+max-width: 100%;
+max-height: 100%;  
+margin:auto;
 }
 
 .restaurant-name {
@@ -18,9 +35,7 @@ li {
     }
 
     #whole-map {
-      /* display:flex; */
-      /* justify-content:center; */
-      /* align-items:center; */
+      margin:auto;
       height: 66%;
       width: 66%;
     }
@@ -49,8 +64,12 @@ li {
       outline: none;
       padding: 0 11px 0 13px;
       text-overflow: ellipsis;
-      /* width: 400px; */
-      position: relative;
+      width: 45%;
+    }
+
+    .map-list-checkbox{
+      text-align:center;
+      font-size:20px;
     }
 
     .controls:focus {
@@ -68,3 +87,4 @@ li {
     #map #infowindow-content {
       display: inline;
     }
+
