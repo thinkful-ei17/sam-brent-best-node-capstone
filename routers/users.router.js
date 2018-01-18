@@ -10,11 +10,13 @@ const router = express.Router();
 router.get('/', (req, res) => {
   User
     .find()
+    .populate('wishlist.restaurant_id')
     .then(users => {
-      res.json({
-        users: users.map(
-          user => user.serialize())
-      });
+      res.json(users);
+      // res.json({
+      //   users: users.map(
+      //     user => user.serialize())
+      // });
     })
     .catch(err => {
       console.error(err);
@@ -26,7 +28,8 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   User
     .findById(req.params.id)
-    .then(user => res.json(user.serialize()))
+    .populate('wishlist.restaurant_id')
+    .then(user => res.json(user))
     .catch(err => {
       console.error(err);
       res.status(500).json({ message: 'Internal Server Error' });
