@@ -10,7 +10,7 @@ $(() => {
 
   api.search()
     .then(response => {
-      store.data = response[1];
+      store.data = response.users[0];
       console.log(store.data);
       store.view = 'list';
       render.render(store);
