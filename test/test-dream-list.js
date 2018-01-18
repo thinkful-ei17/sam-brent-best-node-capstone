@@ -30,11 +30,10 @@ describe('Restaurant Wishlist API', function(){
   });
 
   beforeEach(function(){
-    return seedDatabase();
-  });
-
-  afterEach(function(){
-    return tearDownDatabase();
+    return tearDownDatabase()
+      .then(() => {
+        return seedDatabase();
+      });
   });
 
   after(function(){
