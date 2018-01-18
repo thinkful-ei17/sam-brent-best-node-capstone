@@ -8,9 +8,14 @@ const render = new Render(store);
 
 $(() => {
 
-  api.search()
+  api.searchAll()
     .then(response => {
-      store.data = response.users[0];
+      let id = response.users[0]._id;
+      return api.searchOne(id);
+    })
+    .then(response => {
+      console.log(response);
+      store.data = response;
       console.log(store.data);
       store.view = 'list';
       render.render(store);
