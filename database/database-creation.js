@@ -21,7 +21,7 @@ mongoose.connect(DATABASE_URL, { useMongoClient: true })
     const users = User.create([
       {
         username: 'sam', firstName: 'Sam', lastName: 'Gould',
-        wishlist: [{ restaurant_id: 'ccccccccccccccccccccccc1', notes: 'MUST try the brussel sprouts', rating: 5}, { restaurant_id: 'ccccccccccccccccccccccc2' }, { restaurant_id: 'ccccccccccccccccccccccc3', notes: 'Tea Leaf Salad is a MUST', rating: 5}]
+        wishlist: [{ restaurant_id: 'ccccccccccccccccccccccc1', notes: 'MUST try the brussel sprouts', rating: 5}, { restaurant_id: 'ccccccccccccccccccccccc2' }, { restaurant_id: 'ccccccccccccccccccccccc3', notes: 'Tea Leaf Salad is a MUST!', rating: 5}]
       }, {
         username: 'brent', firstName: 'Brent', lastName: 'Guistwite',
         wishlist: [{ restaurant_id: 'ccccccccccccccccccccccc4' }, { restaurant_id: 'ccccccccccccccccccccccc5', notes: 'Best view of Boston' }, { restaurant_id: 'ccccccccccccccccccccccc6', notes: 'Sweet Potatoes were overrated', rating: 4 }]
