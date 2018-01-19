@@ -49,6 +49,7 @@ router.get('/:id/wishlist/:wishlist_id', (req, res) => {
 // Add User Account
 router.post('/', (req, res) => {
   const requiredFields = ['username', 'firstName', 'lastName'];
+  
   for (let i = 0; i < requiredFields.length; i++) {
     let field = requiredFields[i];
     if (!(field in req.body)) {

@@ -9,7 +9,6 @@ const router = express.Router();
 // UPSERT a Restaurant
 
 router.put('/:placeId', (req, res) => {
-
   const {name, place_id, formatted_address, formatted_phone_number, opening_hours} = req.body;
 
   Restaurant

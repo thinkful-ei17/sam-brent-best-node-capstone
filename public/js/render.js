@@ -10,11 +10,9 @@ class Render {
   renderPage(store) {
     $('.view').hide();
     $(`#${store.view}`).show();
-    console.log(store.view);
   }
 
   generateRestaurantElement(restaurant) {
-    console.log('LOOK AT ME',restaurant);
     return `
     <li class="js-restaurant-element" id="${restaurant._id}">
       <div class="restaurant-name">${restaurant.restaurant_id.name}</div>
@@ -25,7 +23,6 @@ class Render {
 
   // UPDATE WITH ALL DESIRED INFORMATION FOR DETAILED VIEW (HOURS, WEBSITE, ETC.)
   generateDetailedRestaurantElement(restaurant) {
-    console.log('HEY -- LOOK AT ME',restaurant);
     return `
     <li class="js-restaurant-element" id="${restaurant._id}">
       <div class="restaurant-name">${restaurant.restaurant_id.name}</div>
@@ -38,7 +35,6 @@ class Render {
 
   // UPDATE WITH ALL DESIRED INFORMATION FOR DETAILED VIEW (HOURS, WEBSITE, ETC.)
   generateEditingRestaurantElement(restaurant) {
-    console.log('HEY HEY -- LOOK AT ME',restaurant);
     return `
       <li class="js-restaurant-element" id="${restaurant._id}">
         <div class="restaurant-name">${restaurant.restaurant_id.name}</div>
@@ -53,11 +49,7 @@ class Render {
   }
 
   renderRestaurantList(store) {
-    console.log('store',store);
-    
     const listOfRestaurants = store.data.wishlist.map((restaurant) => this.generateRestaurantElement(restaurant));
-    console.log('list', listOfRestaurants);
-    console.log(this);
     $('.js-restaurant-list').html(listOfRestaurants.join(''));
   }
 
@@ -73,10 +65,7 @@ class Render {
   }
 
   renderEdit(store) {
-    const element = $(`#${store.view}`);
-    // const item = store.item;
     const restaurant = this.generateEditingRestaurantElement(store.item);
-    // element.find('[name=notes]').val(item.notes);
     $('.js-editing').html(restaurant);
   }
 
@@ -86,7 +75,6 @@ class Render {
   }
 
   render(store) {
-    console.log(store.currentUser);
     switch (store.view) {
     case 'list': this.renderRestaurantList(store);
       break;

@@ -12,12 +12,12 @@ class Api {
 
     const queryKeys = Object.keys(query);
     queryKeys.forEach(key => url.searchParams.set(key, query[key]));
-    console.log(url);
     return url;
   }
 
   searchAll(query = {}) {
     const url = this._buildUrl('/users', query);
+    
     return fetch(url, {
       method: 'GET',
       headers: {
@@ -28,6 +28,7 @@ class Api {
 
   searchOne(id, query = {}) {
     const url = this._buildUrl(`/users/${id}`, query);
+    
     return fetch(url, {
       method: 'GET',
       headers: {
@@ -73,6 +74,7 @@ class Api {
     }).then(res => res.json())
       .then(restaurant => {
         const url = this._buildUrl(`/users/${id}/wishlist/${restaurant._id}`);
+        
         return fetch(url, {
           method: 'POST',
           headers: {
@@ -118,29 +120,4 @@ class Api {
       }
     }).then(res => res.text());
   }
-
-  // createWishlistEntry(id, restaurant){
-  //   const url1 = this._buildUrl(`users/restaurants/${restaurant.place_id}`);
-  //   const url2 = this._buildUrl(`/users/${id}`);
-
-  //   return fetch(url1, {
-  //     method: 'PUT',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       'Accept': 'application/json'
-  //     },
-  //     body: restaurant ? JSON.stringify(restaurant) : null
-  //   }).then( result => {
-  //     return fetch(url2, {
-  //       method: 'PUT',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         'Accept': 'application/json'
-  //       },
-  //       body: result ? JSON.stringify(result) : null
-  //   }).then(res => res.json());
-  // })
-
 }
-
-
