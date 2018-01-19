@@ -9,7 +9,7 @@ function renderRestaurantInfo(place) {
   return (`<strong>${place.name}</strong><br><br>
         ${place.formatted_address}<br>
         ${place.formatted_phone_number}<br> 
-        <a href=${place.website} target="_blank">Visit restaurants website</a><br><br>
+        <a href="${place.website}" target="_blank">Visit restaurants website</a><br><br>
         ${hours[0]}<br>
         ${hours[1]}<br> 
         ${hours[2]}<br>
@@ -17,14 +17,13 @@ function renderRestaurantInfo(place) {
         ${hours[4]}<br>
         ${hours[5]}<br>
         ${hours[6]}<br><br>
-        <button class=js-wishlist-button type="button">Add to wishlist!</button>
+        <button class="js-wishlist-button" type="button">Add to wishlist!</button>
         `
   );
 }
 
-//once the maps api and places library loads
-//initMap gets called
-function initMap() {
+
+function createMap(updatePlace) {
   console.log('helloworld');
   //where do we want the default city to be?
   const map = new google.maps.Map(document.getElementById('map'), {
@@ -82,9 +81,8 @@ function initMap() {
       map.setCenter(place.geometry.location);
       map.setZoom(17);
     }
-
-    
-    
+    console.log('[GMAP]-ive got a new place');
+    updatePlace(place);
     // Set the position of the marker using the place ID and location.
     //foreach items hour array append all
   
@@ -110,27 +108,4 @@ function initMap() {
 
 }
 
-$('#whole-map').on('click', '.js-wishlist-button', function (event) {
-  event.preventDefault();
-  console.log(event);
-  console.log(this);
-  console.log(store.place);
-  // api.saveToFavorites(store.place)
-  //   .then(${ this}.htmlupdatetext)
-});
-//hidden checkbox shows on success?
 
-
-
-// const restaurantSchema = new mongoose.Schema({
-//   name: { type: String, required: true },
-//   placeId: String,
-//   formatted_address: String,
-//   formatted_phone_number: String,
-//   opening_hours: [String],
-//   position: {
-//     lat: Number,
-//     lng: Number
-//   }
-
-// });
