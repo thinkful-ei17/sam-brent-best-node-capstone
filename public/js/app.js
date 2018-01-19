@@ -6,6 +6,7 @@ const api = new Api('/users');
 const store = new Store();
 const render = new Render(store);
 
+// startApp is called by index.html line 17 in Google API Script
 function startApp() {
   $(() => {
     createMap((place) => {
