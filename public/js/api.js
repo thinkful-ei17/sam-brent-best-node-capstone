@@ -89,7 +89,7 @@ class Api {
   }
 
   removeWishlistEntry(id, entry) {
-    const url = this._buildUrl(`/users/${id}/wishlist/${entry._id}`);
+    const url = this._buildUrl(`/users/${id}/wishlist/${entry}`);
     
     return fetch(url, {
       method: 'DELETE',

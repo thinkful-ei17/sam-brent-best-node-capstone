@@ -30,8 +30,26 @@ class Render {
     <li class="js-restaurant-element" id="${restaurant._id}">
       <div class="restaurant-name">${restaurant.restaurant_id.name}</div>
       <div class="restaurant-notes">Notes: ${restaurant.notes}</div>
-      <button class="js-view-restaurant-button" type="button">View Restaurant Details</button>
+      <button class="js-update-restaurant-button" type="button">Update Restaurant</button>
+      <button class="js-remove-restaurant-button" type="button">Remove Restaurant</button>
+      <button class="js-view-wishlist-button" type="button">Return to Wishlist</button>
     </li>`;
+  }
+
+  // UPDATE WITH ALL DESIRED INFORMATION FOR DETAILED VIEW (HOURS, WEBSITE, ETC.)
+  generateEditingRestaurantElement(restaurant) {
+    console.log('HEY HEY -- LOOK AT ME',restaurant);
+    return `
+      <li class="js-restaurant-element" id="${restaurant._id}">
+        <div class="restaurant-name">${restaurant.restaurant_id.name}</div>
+        
+        <label for="notes">Notes:</label>
+        <textarea rows="2" cols="50" name="content" id="notes">${restaurant.notes}</textarea>
+
+        <button class="js-confirm-update-restaurant-button" type="button">Update Restaurant</button>
+        <button class="js-remove-restaurant-button" type="button">Remove Restaurant</button>
+        <button class="js-back-to-restaurant-button" type="button">Cancel</button>
+      </li>`;
   }
 
   renderRestaurantList(store) {
@@ -54,15 +72,15 @@ class Render {
     </form>`;
   }
 
-  // renderEdit(store) {
-  //   const el = $(`#${store.view}`);
-  //   const item = store.item;
-  //   el.find('[name=name]').val(item.name);
-  //   el.find('[name=notes]').val(item.notes);
-  // }
+  renderEdit(store) {
+    const element = $(`#${store.view}`);
+    // const item = store.item;
+    const restaurant = this.generateEditingRestaurantElement(store.item);
+    // element.find('[name=notes]').val(item.notes);
+    $('.js-editing').html(restaurant);
+  }
 
   renderDetail(store) {
-    const el = $(`#${store.view}`);
     const restaurant = this.generateDetailedRestaurantElement(store.item);
     $('.js-restaurant-detail').html(restaurant);
   }
