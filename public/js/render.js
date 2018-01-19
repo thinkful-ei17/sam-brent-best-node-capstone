@@ -16,9 +16,21 @@ class Render {
   generateRestaurantElement(restaurant) {
     console.log('LOOK AT ME',restaurant);
     return `
-    <li class="js-restaurant-id-element ${restaurant.restaurant_id._id}">
+    <li class="js-restaurant-element" id="${restaurant._id}">
       <div class="restaurant-name">${restaurant.restaurant_id.name}</div>
       <div class="restaurant-notes">Notes: ${restaurant.notes}</div>
+      <button class="js-view-restaurant-button" type="button">View Restaurant Details</button>
+    </li>`;
+  }
+
+  // UPDATE WITH ALL DESIRED INFORMATION FOR DETAILED VIEW (HOURS, WEBSITE, ETC.)
+  generateDetailedRestaurantElement(restaurant) {
+    console.log('HEY -- LOOK AT ME',restaurant);
+    return `
+    <li class="js-restaurant-element" id="${restaurant._id}">
+      <div class="restaurant-name">${restaurant.restaurant_id.name}</div>
+      <div class="restaurant-notes">Notes: ${restaurant.notes}</div>
+      <button class="js-view-restaurant-button" type="button">View Restaurant Details</button>
     </li>`;
   }
 
@@ -49,12 +61,11 @@ class Render {
   //   el.find('[name=notes]').val(item.notes);
   // }
 
-  // renderDetail(store) {
-  //   const el = $(`#${store.view}`);
-  //   const item = store.item;
-  //   el.find('.name').text(item.name);
-  //   el.find('.notes').text(item.notes);
-  // }
+  renderDetail(store) {
+    const el = $(`#${store.view}`);
+    const restaurant = this.generateDetailedRestaurantElement(store.item);
+    $('.js-restaurant-detail').html(restaurant);
+  }
 
   render(store) {
     console.log(store.currentUser);

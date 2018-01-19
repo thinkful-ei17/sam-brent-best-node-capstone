@@ -45,6 +45,21 @@ function startApp(){
         });
 
     });
+
+    $('.js-restaurant-list').on('click', '.js-view-restaurant-button', function(event){
+      event.preventDefault();
+      let wishlist_id = $(this).closest('li').attr('id');
+      api.details(store.currentUser, wishlist_id)
+        .then(response => {
+          console.log(response);
+          store.item = response;
+          store.view = 'detail';
+          render.render(store);
+        }).catch(err => {
+          console.error(err);
+        });
+    });
+
     $('#whole-map').on('click', '.js-wishlist-button', function (event) {
       event.preventDefault();
       console.log(event);
