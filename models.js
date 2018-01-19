@@ -8,6 +8,7 @@ const restaurantSchema = new mongoose.Schema({
   placeId: String,
   formatted_address: String,
   formatted_phone_number: String,
+  website: String,
   opening_hours:[String],
   position:{
     lat:Number,

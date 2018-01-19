@@ -39,28 +39,12 @@
     </div>
   </div>
 
-  <form class="map-list-checkbox">
-    <input type="checkbox" id="map-view">
-    <label for="map-view">Map View</label>
-
-    <input type="checkbox" id="list-view">
-    <label for="list-view">List View</label>
-  </form>
-  <form>
-    <label for="visited-status">Something Old or Something New?</label>
-    <select name="status" id="visited-status" size=1>
-      <option selected value="all">Doesn't Matter</option>
-      <option value="new">New, Obviously</option>
-      <option value="visited">Only Old Favorites</option>
-    </select>
-    <input type="submit" id="js-filter-button" value="Filter">
-  </form>
-
-  <ul id="list" class="view restaurant-list js-restaurant-list">
-  </ul>
+  <section id="list" class="view">
+    <ul class="restaurant-list js-restaurant-list"></ul>
+  </section>
 
   <section id="detail" class="view">
-			<ul class="js-restaurant-detail"></ul>
+		<ul class="js-restaurant-detail"></ul>
 	</section>
 
   <section id="edit" class="view">

@@ -105,6 +105,7 @@ router.post('/:user_id/wishlist/:restaurant_id', (req, res) => {
         $push: {
           wishlist: {
             restaurant_id: req.params.restaurant_id,
+            notes: ''
           }}
       },
       {
