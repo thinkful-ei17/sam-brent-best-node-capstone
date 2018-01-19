@@ -44,6 +44,7 @@ describe('Restaurant Wishlist API', function(){
     
     it('should return all existing users', function(){
       let res;
+
       return chai.request(app)
         .get('/users')
         .then(_res => {
@@ -59,6 +60,7 @@ describe('Restaurant Wishlist API', function(){
 
     it('should return a specific user', function(){
       let resUser;
+
       return chai.request(app)
         .get('/users')
         .then(function(res){
@@ -86,6 +88,7 @@ describe('Restaurant Wishlist API', function(){
     it('should return a specific restaurant from the wishlist of a user', function(){
       let resUser;
       let resRestaurant;
+
       return chai.request(app)
         .get('/users')
         .then(function(res){
@@ -111,7 +114,6 @@ describe('Restaurant Wishlist API', function(){
 
   describe('POST endpoint', function(){
     it('should add a new user', function(){
-      
       const newUser = {
         'username': 'chris',
         'firstName': 'Chris',
@@ -172,34 +174,16 @@ describe('Restaurant Wishlist API', function(){
         });
     });
 
-    // it('should update a restaurant in the database (portion of UPSERT)', function(){
+    it('should update a restaurant in the database (portion of UPSERT)', function(){
+      const updateRestaurant = {'address_components':[{'long_name':'1206','short_name':'1206','types':['street_number']},{'long_name':'West University Avenue','short_name':'W University Ave','types':['route']},{'long_name':'Fifth Avenue','short_name':'Fifth Avenue','types':['neighborhood','political']},{'long_name':'Gainesville','short_name':'Gainesville','types':['locality','political']},{'long_name':'Alachua County','short_name':'Alachua County','types':['administrative_area_level_2','political']},{'long_name':'Florida','short_name':'FL','types':['administrative_area_level_1','political']},{'long_name':'United States','short_name':'US','types':['country','political']},{'long_name':'32601','short_name':'32601','types':['postal_code']}],'adr_address':'<span class="street-address">1206 W University Ave</span>, <span class="locality">Gainesville</span>, <span class="region">FL</span> <span class="postal-code">32601</span>, <span class="country-name">USA</span>','formatted_address':'1206 W University Ave, Gainesville, FL 32601, USA','formatted_phone_number':'(352) 376-3040','geometry':{'location':{'lat':29.6522551,'lng':-82.33735790000003},'viewport':{'south':29.6508109197085,'west':-82.33870743029149,'north':29.6535088802915,'east':-82.33600946970853}},'icon':'https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png','id':'575d4f39b28d51fc3ea5ed14179d1a38b34a8213','international_phone_number':'+1 352-376-3040','name':'McDonald\'s','opening_hours':{'open_now':true,'periods':[{'open':{'day':0,'time':'0000','hours':0,'minutes':0,'nextDate':1516510800000}}],'weekday_text':['Monday: Never','Tuesday: Open 24 hours','Wednesday: Open 24 hours','Thursday: Open 24 hours','Friday: Open 24 hours','Saturday: Open 24 hours','Sunday: Open 24 hours']},'photos':[{'height':768,'html_attributions':['<a href="https://maps.google.com/maps/contrib/104384481723960919338/photos">McDonald&#39;s</a>'],'width':1025},{'height':1836,'html_attributions':['<a href="https://maps.google.com/maps/contrib/108440290729341515140/photos">Reinier Cruz</a>'],'width':3264},{'height':2448,'html_attributions':['<a href="https://maps.google.com/maps/contrib/106134198650407433545/photos">Robin Simmons</a>'],'width':3264},{'height':768,'html_attributions':['<a href="https://maps.google.com/maps/contrib/104384481723960919338/photos">McDonald&#39;s</a>'],'width':1025},{'height':768,'html_attributions':['<a href="https://maps.google.com/maps/contrib/104384481723960919338/photos">McDonald&#39;s</a>'],'width':1025},{'height':3024,'html_attributions':['<a href="https://maps.google.com/maps/contrib/109534396572635176855/photos">Jeanne L</a>'],'width':4032},{'height':768,'html_attributions':['<a href="https://maps.google.com/maps/contrib/104384481723960919338/photos">McDonald&#39;s</a>'],'width':1025},{'height':768,'html_attributions':['<a href="https://maps.google.com/maps/contrib/104384481723960919338/photos">McDonald&#39;s</a>'],'width':1025},{'height':768,'html_attributions':['<a href="https://maps.google.com/maps/contrib/104384481723960919338/photos">McDonald&#39;s</a>'],'width':1025},{'height':768,'html_attributions':['<a href="https://maps.google.com/maps/contrib/104384481723960919338/photos">McDonald&#39;s</a>'],'width':1025}],'place_id':'ChIJL6KGEoSj6IgRu6ygIQ3p2OA','price_level':1,'rating':3.1,'reference':'CmRSAAAA-Afw6kd6KG2WnE2LbB0nlRAEEkUakwfEJcyDx3mmIGwgFqS2uiQGJe3L0H83RHWJDOVjh08PjzuT4CzuPqwhuRDSvXqn5nbV55fcNEy9CrwJmesNSyNcHRTiC-3IfOk3EhCf2Ty_HWf-RmmqERMom7vaGhSwuCa0df0m1z2f1jhudglBuVW_Kg'};
       
-    //   const updateRestaurant = {
-    //     'name': 'Burger King'
-    //   };
-    //   let user;
-    //   return User.findOne()
-    //     .then(function(_user){
-    //       user=_user;
-    //       return Restaurant.findOne();
-    //     })
-    //     .then(function(restaurant){
-    //       console.log(restaurant);
-    //       updateRestaurant._id = restaurant._id;
-    //       console.log(updateRestaurant._id);
-    //       return chai.request(app)
-    //         .put(`/users/${user._id}`)
-    //         .send(updateRestaurant);
-    //     })
-    //     .then(function(res) {
-    //       expect(res).to.have.status(200);
-    //       return Restaurant.findById(updateRestaurant._id);
-    //     })
-    //     .then(function(restaurant) {
-    //       console.log(restaurant);
-    //       expect(restaurant.name).to.equal(updateRestaurant.name);
-    //     });
-    // });
+      return chai.request(app)
+        .put(`/restaurants/${updateRestaurant.placeId}`)
+        .send(updateRestaurant)
+        .then(function(res) {
+          expect(res).to.have.status(201);
+        });
+    });
   });
 
   describe('DELETE endpoints', function(){
@@ -224,6 +208,7 @@ describe('Restaurant Wishlist API', function(){
     it('should remove a restaurant from the wishlist of a user', function(){
       let user;
       let wishlist_id;
+      
       return User
         .findOne()
         .then(function(_user) {

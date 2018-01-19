@@ -8,7 +8,6 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 const { DATABASE_URL, PORT } = require('./config');
-const { Restaurant, User } = require('./models');
 const usersRouter = require('./routers/users.router');
 const restaurantRouter = require('./routers/restaurants.router');
 
@@ -56,8 +55,6 @@ function closeServer() {
   });
 }
 
-// if server.js is called directly (aka, with `node server.js`), this block
-// runs. but we also export the runServer command so other code (for instance, test code) can start the server as needed.
 if (require.main === module) {
   runServer().catch(err => console.error(err));
 }

@@ -8,6 +8,7 @@ const restaurantSchema = new mongoose.Schema({
   placeId: String,
   formatted_address: String,
   formatted_phone_number: String,
+  website: String,
   opening_hours:[String],
   position:{
     lat:Number,
@@ -27,16 +28,6 @@ const userSchema = new mongoose.Schema({
     rating: Number
   }]
 });
-
-userSchema.methods.serialize = function(){
-  return {
-    username: this.username,
-    firstName: this.firstName,
-    lastName: this.lastName,
-    wishlist: this.wishlist,
-    _id: this._id
-  };
-};
 
 const User = mongoose.model('User', userSchema);
 

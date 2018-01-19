@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose');
 
-const { DATABASE_URL, PORT } = require('../config');
+const { DATABASE_URL } = require('../config');
 const { Restaurant, User } = require('../models');
 
 mongoose.connect(DATABASE_URL, { useMongoClient: true })

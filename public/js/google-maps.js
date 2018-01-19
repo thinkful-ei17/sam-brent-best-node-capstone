@@ -1,11 +1,8 @@
 'use strict';
 
-// let store = {};
-
 function renderRestaurantInfo(place) {
-  // store.place = place;
-  console.log(place);
   const hours = place.opening_hours.weekday_text;
+
   return (`<strong>${place.name}</strong><br><br>
         ${place.formatted_address}<br>
         ${place.formatted_phone_number}<br> 
@@ -22,10 +19,7 @@ function renderRestaurantInfo(place) {
   );
 }
 
-
 function createMap(updatePlace) {
-  console.log('helloworld');
-  //where do we want the default city to be?
   const map = new google.maps.Map(document.getElementById('map'), {
     center: {
       lat: 29.651634, lng: -82.324829
@@ -69,7 +63,6 @@ function createMap(updatePlace) {
 
   autocomplete.addListener('place_changed', function () {
     infowindow.close();
-    console.log('place changed triggered');
     const place = autocomplete.getPlace();
     if (!place.geometry) {
       return;
@@ -81,7 +74,6 @@ function createMap(updatePlace) {
       map.setCenter(place.geometry.location);
       map.setZoom(17);
     }
-    console.log('[GMAP]-ive got a new place');
     updatePlace(place);
     // Set the position of the marker using the place ID and location.
     //foreach items hour array append all
@@ -93,17 +85,6 @@ function createMap(updatePlace) {
     marker1.setVisible(true);
     infowindow.setContent(renderRestaurantInfo(place));
     infowindow.open(map, marker1);
-    //////////////////////////////
-
-    // let dummyData =
-    //   (`${place.name}<br>
-    //   ${place.place_id}<br>
-    //   ${place.formatted_address}<br>
-    //   ${place.formatted_phone_number}<br>
-    //   ${place.opening_hours.weekday_text}<br>
-    //   ${position:place.geometry.location}<br>
-    //   `);
-
   });
 
 }
