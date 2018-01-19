@@ -31,15 +31,13 @@ class Render {
     $('.js-restaurant-list').html(listOfRestaurants.join(''));
   }
 
-  
-//change to users plz :)
-  renderUserDropdown(user){
+  renderUserDropdown(users){
     return ` <form>
       <label for="user-name">Select user</label>
       <select name="user" id="user-name" size=1 >
-        <option selected value=${user[0]._id}>${user[0].username}</option>
-      <option value=${user[1]._id}>${user[1].username}</option>
-      <option value=${user[2]._id}>${user[2].username}</option>
+        <option value=${users[0]._id}>${users[0].username}</option>
+      <option value=${users[1]._id}>${users[1].username}</option>
+      <option value=${users[2]._id}>${users[2].username}</option>
     </select>
     </form>`;
   }
@@ -59,8 +57,7 @@ class Render {
   // }
 
   render(store) {
-    $('.user-dropdown').html(this.renderUserDropdown(store.users));
-    console.log(store);
+    console.log(store.currentUser);
     switch (store.view) {
     case 'list': this.renderRestaurantList(store);
       break;

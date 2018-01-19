@@ -17,8 +17,9 @@ function startApp(){
       .then(users => {
         console.log('this is the response',users);
         store.users = users;
-        let id = users[1]._id;
-        return api.searchOne(id);
+        store.currentUser = users[0]._id;
+        $('.user-dropdown').html(render.renderUserDropdown(store.users));
+        return api.searchOne(store.currentUser);
       })
       .then(response => {
         console.log(response);

@@ -138,7 +138,7 @@ router.put('/:id', (req, res) => {
             new: true
           }
         );
-    })
+    }).populate('wishlist.restaurant_id')
     .then(results => res.status(200).json(results))
     .catch(err => {
       console.error(err);
