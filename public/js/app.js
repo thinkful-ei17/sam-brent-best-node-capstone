@@ -145,15 +145,20 @@ function startApp() {
         });
     });
 
+    // ADD TO WISHLIST EVENT HANDLER
+
     $('#whole-map').on('click', '.js-wishlist-button', function (event) {
       event.preventDefault();
       console.log(event);
       console.log(this);
       console.log(store.place);
-      api.createWishlistEntry(store.currentUser, store.place);
-
-      // api.saveToFavorites(store.place)
-      //   .then(${ this}.htmlupdatetext)
+      api.createWishlistEntry(store.currentUser, store.place)
+        .then(response => {
+          store.data = response;
+          render.render(store);
+        }).catch(err => {
+          console.error(err);
+        });
     });
     //hidden checkbox shows on success?
   });

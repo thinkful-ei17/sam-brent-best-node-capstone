@@ -61,7 +61,27 @@ class Api {
   }
 
   createWishlistEntry(id, restaurant){
-    console.log('[API]-sending restaurant to server',id, restaurant);
+    const url = this._buildUrl(`/restaurants/${restaurant.place_id}`);
+    
+    return fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: restaurant ? JSON.stringify(restaurant) : null
+    }).then(res => res.json())
+      .then(restaurant => {
+        const url = this._buildUrl(`/users/${id}/wishlist/${restaurant._id}`);
+        return fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: restaurant ? JSON.stringify(restaurant) : null
+        });
+      }).then(res => res.json());
   }
   
   updateWishlistEntry(id, wishlist_id, entry) {

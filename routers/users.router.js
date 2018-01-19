@@ -102,55 +102,28 @@ router.put('/:id/wishlist/:wishlist_id', (req, res) => {
 
 
 //Add restaurant to "wishlist"
-router.put('/:id', (req, res) => {
-  const {name, placeId, formatted_address, formatted_phone_number, opening_hours, notes} = req.body;
-  //Saving google maps restaurant data to database
-  Restaurant
-    .findOneAndUpdate(
+router.post('/:user_id/wishlist/:restaurant_id', (req, res) => {
+  User
+    .findByIdAndUpdate(
+      req.params.user_id,
       {
-        placeId
+        $push: {
+          wishlist: {
+            restaurant_id: req.params.restaurant_id,
+          }}
       },
       {
-        name,
-        placeId,
-        formatted_address,
-        formatted_phone_number,
-        opening_hours: opening_hours.weekday_text,
-        position: {
-          lat: req.body.geometry.location.lat(),
-          lng: req.body.geometry.location.lng()
-        }
-      },
-      {
-        upsert: true,
-        new:true
-      })
-    .then(results => {
-      console.log(results);
-      //add reference to restaurant in user collection
-      return User
-        .findByIdAndUpdate(
-          req.params.id,
-          {
-            $push: {
-              wishlist: {
-                restaurant_id: results._id,
-                notes,
-                rating: null
-              }}
-          },
-          {
-            new: true
-          }
-        );
-    }).populate('wishlist.restaurant_id')
+        new: true
+      }
+    ).populate('wishlist.restaurant_id')
     .then(results => res.status(200).json(results))
     .catch(err => {
       console.error(err);
       res.status(500).json({ message: 'Something went wrong' });
     });
 });
-  
+
+
 
 // Delete User Account
 router.delete('/:id', (req, res) => {

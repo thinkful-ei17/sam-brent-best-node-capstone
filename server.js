@@ -10,6 +10,7 @@ mongoose.Promise = global.Promise;
 const { DATABASE_URL, PORT } = require('./config');
 const { Restaurant, User } = require('./models');
 const usersRouter = require('./routers/users.router');
+const restaurantRouter = require('./routers/restaurants.router');
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/users', usersRouter);
+app.use('/restaurants', restaurantRouter);
 
 let server;
 
