@@ -2,7 +2,7 @@
 
 const express = require('express');
 
-const { Restaurant, User } = require('../models');
+const { User } = require('../models');
 
 const router = express.Router();
 
@@ -13,10 +13,6 @@ router.get('/', (req, res) => {
     .populate('wishlist.restaurant_id')
     .then(users => {
       res.json(users);
-      // res.json({
-      //   users: users.map(
-      //     user => user.serialize())
-      // });
     })
     .catch(err => {
       console.error(err);
@@ -67,7 +63,7 @@ router.post('/', (req, res) => {
       firstName: req.body.firstName,
       lastName: req.body.lastName
     })
-    .then(user => res.status(201).json(user.serialize()))
+    .then(user => res.status(201).json(user))
     .catch(err => {
       console.error(err);
       res.status(500).json({ message: 'Internal Server Error' });
@@ -99,8 +95,6 @@ router.put('/:id/wishlist/:wishlist_id', (req, res) => {
     });
 });
 
-
-
 //Add restaurant to "wishlist"
 router.post('/:user_id/wishlist/:restaurant_id', (req, res) => {
   User
@@ -116,14 +110,12 @@ router.post('/:user_id/wishlist/:restaurant_id', (req, res) => {
         new: true
       }
     ).populate('wishlist.restaurant_id')
-    .then(results => res.status(200).json(results))
+    .then(results => res.status(201).json(results))
     .catch(err => {
       console.error(err);
       res.status(500).json({ message: 'Something went wrong' });
     });
 });
-
-
 
 // Delete User Account
 router.delete('/:id', (req, res) => {
@@ -151,35 +143,5 @@ router.delete('/:id/wishlist/:wishlist_id', (req, res) => {
       res.status(500).json({ message: 'Internal Server Error' });
     });
 });
-
-// router.put('/users/restaurant', (req,res) => {
-//   const {name, placeId, formatted_address, formatted_phone_number, opening_hours, notes} = req.body;
-//   //Saving google maps restaurant data to database
-//   Restaurant
-//     .findOneAndUpdate(
-//       {
-//         placeId
-//       },
-//       {
-//         name,
-//         placeId,
-//         formatted_address,
-//         formatted_phone_number,
-//         opening_hours: opening_hours.weekday_text,
-//         position: {
-//           lat: req.body.geometry.location.lat(),
-//           lng: req.body.geometry.location.lng()
-//         }
-//       },
-//       {
-//         upsert: true,
-//         new:true
-//       })
-//     .then(results => res.status(200).json(results))
-//     .catch(err => {
-//       console.error(err);
-//       res.status(500).json({ message: 'Something went wrong' });
-//     });
-// });
 
 module.exports = router;
