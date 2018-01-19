@@ -98,4 +98,29 @@ class Api {
       }
     }).then(res => res.text());
   }
+
+  // createWishlistEntry(id, restaurant){
+  //   const url1 = this._buildUrl(`users/restaurants/${restaurant.place_id}`);
+  //   const url2 = this._buildUrl(`/users/${id}`);
+
+  //   return fetch(url1, {
+  //     method: 'PUT',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       'Accept': 'application/json'
+  //     },
+  //     body: restaurant ? JSON.stringify(restaurant) : null
+  //   }).then( result => {
+  //     return fetch(url2, {
+  //       method: 'PUT',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         'Accept': 'application/json'
+  //       },
+  //       body: result ? JSON.stringify(result) : null
+  //   }).then(res => res.json());
+  // })
+
 }
+
+
