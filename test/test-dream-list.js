@@ -43,18 +43,17 @@ describe('Restaurant Wishlist API', function(){
   describe('GET endpoint', function(){
     
     it('should return all existing users', function(){
-
       let res;
       return chai.request(app)
         .get('/users')
         .then(_res => {
           res = _res;
           expect(res).to.have.status(200);
-          expect(res.body.users).to.have.length.of.at.least(1);
+          expect(res.body).to.have.length.of.at.least(1);
           return User.count();
         })
         .then(count => {
-          expect(res.body.users).to.have.length.lengthOf(count);
+          expect(res.body).to.have.length.lengthOf(count);
         });
     });
 
@@ -65,15 +64,15 @@ describe('Restaurant Wishlist API', function(){
         .then(function(res){
           expect(res).to.have.status(200);
           expect(res).to.be.json;
-          expect(res.body.users).to.be.a('array');
-          expect(res.body.users).to.have.length.of.at.least(1);
+          expect(res.body).to.be.a('array');
+          expect(res.body).to.have.length.of.at.least(1);
           
-          res.body.users.forEach(function(user){
+          res.body.forEach(function(user){
             expect(user).to.be.a('object');
             expect(user).to.include.keys('username', 'firstName', 'lastName', 'wishlist');
           });
 
-          resUser = res.body.users[0];
+          resUser = res.body[0];
           return User.findById(resUser._id);
         })
         .then(function(user){
@@ -91,9 +90,9 @@ describe('Restaurant Wishlist API', function(){
         .get('/users')
         .then(function(res){
           expect(res).to.have.status(200);
-          expect(res.body.users).to.have.length.of.at.least(1);
+          expect(res.body).to.have.length.of.at.least(1);
           
-          resUser = res.body.users[0];
+          resUser = res.body[0];
           return User.findById(resUser._id);
         })
         .then(() => {
@@ -105,7 +104,6 @@ describe('Restaurant Wishlist API', function(){
             { 'wishlist': { $elemMatch: { '_id': resRestaurant._id } } } );
         })
         .then(function(restaurant){
-          expect(resRestaurant.restaurant_id).to.contain(restaurant.wishlist[0].restaurant_id);
           expect(resRestaurant._id).to.contain(restaurant.wishlist[0]._id);
         });
     });  
