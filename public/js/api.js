@@ -64,8 +64,8 @@ class Api {
     console.log('[API]-sending restaurant to server',id, restaurant);
   }
   
-  updateWishlistEntry(id, entry) {
-    const url = this._buildUrl(`/users/${id}/wishlist/${entry._id}`);
+  updateWishlistEntry(id, wishlist_id, entry) {
+    const url = this._buildUrl(`/users/${id}/wishlist/${wishlist_id}`);
 
     return fetch(url, {
       method: 'PUT',
@@ -89,7 +89,7 @@ class Api {
   }
 
   removeWishlistEntry(id, entry) {
-    const url = this._buildUrl(`/users/${id}/wishlist/${entry._id}`);
+    const url = this._buildUrl(`/users/${id}/wishlist/${entry}`);
     
     return fetch(url, {
       method: 'DELETE',
@@ -98,4 +98,29 @@ class Api {
       }
     }).then(res => res.text());
   }
+
+  // createWishlistEntry(id, restaurant){
+  //   const url1 = this._buildUrl(`users/restaurants/${restaurant.place_id}`);
+  //   const url2 = this._buildUrl(`/users/${id}`);
+
+  //   return fetch(url1, {
+  //     method: 'PUT',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       'Accept': 'application/json'
+  //     },
+  //     body: restaurant ? JSON.stringify(restaurant) : null
+  //   }).then( result => {
+  //     return fetch(url2, {
+  //       method: 'PUT',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         'Accept': 'application/json'
+  //       },
+  //       body: result ? JSON.stringify(result) : null
+  //   }).then(res => res.json());
+  // })
+
 }
+
+

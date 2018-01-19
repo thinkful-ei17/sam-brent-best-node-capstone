@@ -84,7 +84,12 @@ router.put('/:id/wishlist/:wishlist_id', (req, res) => {
         'wishlist.$.notes': req.body.notes
       } },
       {new: true}
-    ).populate('wishlist.restaurant_id')
+    )
+    .then(() => {
+      return User
+        .findOne({ _id: req.params.id }, { 'wishlist': { $elemMatch: { '_id': req.params.wishlist_id } } })
+        .populate('wishlist.restaurant_id');
+    })
     .then(restaurant => {
       return res.status(200).json(restaurant);
     })
@@ -138,7 +143,7 @@ router.put('/:id', (req, res) => {
             new: true
           }
         );
-    })
+    }).populate('wishlist.restaurant_id')
     .then(results => res.status(200).json(results))
     .catch(err => {
       console.error(err);
@@ -173,5 +178,35 @@ router.delete('/:id/wishlist/:wishlist_id', (req, res) => {
       res.status(500).json({ message: 'Internal Server Error' });
     });
 });
+
+// router.put('/users/restaurant', (req,res) => {
+//   const {name, placeId, formatted_address, formatted_phone_number, opening_hours, notes} = req.body;
+//   //Saving google maps restaurant data to database
+//   Restaurant
+//     .findOneAndUpdate(
+//       {
+//         placeId
+//       },
+//       {
+//         name,
+//         placeId,
+//         formatted_address,
+//         formatted_phone_number,
+//         opening_hours: opening_hours.weekday_text,
+//         position: {
+//           lat: req.body.geometry.location.lat(),
+//           lng: req.body.geometry.location.lng()
+//         }
+//       },
+//       {
+//         upsert: true,
+//         new:true
+//       })
+//     .then(results => res.status(200).json(results))
+//     .catch(err => {
+//       console.error(err);
+//       res.status(500).json({ message: 'Something went wrong' });
+//     });
+// });
 
 module.exports = router;

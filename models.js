@@ -36,7 +36,6 @@ userSchema.methods.serialize = function(){
     lastName: this.lastName,
     wishlist: this.wishlist,
     _id: this._id
-  // REMOVE _id FOR DEVELOPMENT ONLY
   };
 };
 
