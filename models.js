@@ -13,7 +13,6 @@ const restaurantSchema = new mongoose.Schema({
     lat:Number,
     lng:Number
   }
-
 });
 
 const Restaurant = mongoose.model('Restaurant', restaurantSchema);
