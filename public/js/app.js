@@ -46,25 +46,53 @@ function startApp() {
 
     });
     
-    $('.js-editing').on('click', 'js-back-to-restaurant-button', function (event) {
+    // EDIT VIEW EVENT LISTENERS
+
+    $('.js-editing').on('click', '.js-back-to-restaurant-button', function (event) {
       event.preventDefault();
       store.view = 'detail';
       render.render(store);
     });
-    
-    $('.js-restaurant-list').on('click', '.js-view-restaurant-button', function (event) {
+
+    $('.js-editing').on('click', '.js-remove-restaurant-button', function (event) {
       event.preventDefault();
       let wishlist_id = $(this).closest('li').attr('id');
-      api.details(store.currentUser, wishlist_id)
-        .then(response => {
+      console.log(wishlist_id);
+      return api.removeWishlistEntry(store.currentUser, wishlist_id)
+        .then(() => {
+          return api.searchOne(store.currentUser);
+        })
+        .then((response) => {
+          store.data = response;
+          store.view = 'list';
+          render.render(store);
+        }).catch(err => {
+          console.error(err);
+        });
+    });
+
+    $('.js-editing').on('click', '.js-update-restaurant-button', function (event) {
+      event.preventDefault();
+      const updatedNotes = $('textarea#notes').val();
+      const wishlist_id = store.item._id;
+      console.log(store.item);
+      const entry = {
+        rating: null,
+        notes: updatedNotes
+      };
+
+      api.updateWishlistEntry(store.currentUser, wishlist_id, entry)
+        .then((response) => {
           console.log(response);
-          store.item = response;
+          store.item = response.wishlist[0];
           store.view = 'detail';
           render.render(store);
         }).catch(err => {
           console.error(err);
         });
     });
+    
+    // DETAIL VIEW EVENT LISTENERS
 
     $('.js-restaurant-detail').on('click', '.js-update-restaurant-button', function (event) {
       event.preventDefault();
@@ -95,6 +123,22 @@ function startApp() {
         .then((response) => {
           store.data = response;
           store.view = 'list';
+          render.render(store);
+        }).catch(err => {
+          console.error(err);
+        });
+    });
+
+    // LIST VIEW EVENT LISTENER
+
+    $('.js-restaurant-list').on('click', '.js-view-restaurant-button', function (event) {
+      event.preventDefault();
+      let wishlist_id = $(this).closest('li').attr('id');
+      api.details(store.currentUser, wishlist_id)
+        .then(response => {
+          console.log(response);
+          store.item = response;
+          store.view = 'detail';
           render.render(store);
         }).catch(err => {
           console.error(err);

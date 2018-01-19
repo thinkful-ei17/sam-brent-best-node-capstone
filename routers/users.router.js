@@ -84,7 +84,12 @@ router.put('/:id/wishlist/:wishlist_id', (req, res) => {
         'wishlist.$.notes': req.body.notes
       } },
       {new: true}
-    ).populate('wishlist.restaurant_id')
+    )
+    .then(() => {
+      return User
+        .findOne({ _id: req.params.id }, { 'wishlist': { $elemMatch: { '_id': req.params.wishlist_id } } })
+        .populate('wishlist.restaurant_id');
+    })
     .then(restaurant => {
       return res.status(200).json(restaurant);
     })

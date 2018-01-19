@@ -44,9 +44,9 @@ class Render {
         <div class="restaurant-name">${restaurant.restaurant_id.name}</div>
         
         <label for="notes">Notes:</label>
-        <textarea rows="2" cols="50" name="content" id="notes">${restaurant.notes}</textarea>
+        <textarea rows="2" cols="50" name="notes" id="notes">${restaurant.notes}</textarea>
 
-        <button class="js-confirm-update-restaurant-button" type="button">Update Restaurant</button>
+        <button class="js-update-restaurant-button" type="button">Update Restaurant</button>
         <button class="js-remove-restaurant-button" type="button">Remove Restaurant</button>
         <button class="js-back-to-restaurant-button" type="button">Cancel</button>
       </li>`;

@@ -64,8 +64,8 @@ class Api {
     console.log('[API]-sending restaurant to server',id, restaurant);
   }
   
-  updateWishlistEntry(id, entry) {
-    const url = this._buildUrl(`/users/${id}/wishlist/${entry._id}`);
+  updateWishlistEntry(id, wishlist_id, entry) {
+    const url = this._buildUrl(`/users/${id}/wishlist/${wishlist_id}`);
 
     return fetch(url, {
       method: 'PUT',
