@@ -26,7 +26,8 @@ function createMap(updatePlace) {
     },
     zoom: 13
   });
-
+  window.map = map;
+  
   ////////////////////////////////////////////////////////////
   // Create markers.
   // features.forEach(function (feature) {
@@ -55,11 +56,13 @@ function createMap(updatePlace) {
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
   const infowindow = new google.maps.InfoWindow();
+  window.infowindow = infowindow;
   const infowindowContent = document.getElementById('infowindow-content');
   infowindow.setContent(infowindowContent);
   let marker1 = new google.maps.Marker({
     map: map
   });
+  window.marker1 = marker1;
 
   autocomplete.addListener('place_changed', function () {
     infowindow.close();
