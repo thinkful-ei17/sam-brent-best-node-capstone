@@ -12,6 +12,24 @@ class Render {
     $(`#${store.view}`).show();
   }
 
+  renderMap(store){
+    const place = store.place;
+
+    if (place.geometry.viewport) {
+      window.map.fitBounds(place.geometry.viewport);
+    } else {
+      window.map.setCenter(place.geometry.location);
+      window.map.setZoom(17);
+    }
+    window.marker1.setPlace({
+      placeId: place.placeId,
+      location: place.geometry.location
+    });
+    window.marker1.setVisible(true);
+    window.infowindow.setContent(window.renderRestaurantInfo(place));
+    window.infowindow.open(window.map, window.marker1);
+  }
+
   generateRestaurantElement(restaurant) {
     return `
     <li class="js-restaurant-element" id="${restaurant._id}">

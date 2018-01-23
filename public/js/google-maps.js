@@ -1,8 +1,10 @@
 'use strict';
 
 function renderRestaurantInfo(place) {
-  const hours = place.opening_hours.weekday_text;
-
+  const hours = place.opening_hours.weekday_text 
+    ? place.opening_hours.weekday_text 
+    : place.opening_hours;
+  
   return (`<strong>${place.name}</strong><br><br>
         ${place.formatted_address}<br>
         ${place.formatted_phone_number}<br> 

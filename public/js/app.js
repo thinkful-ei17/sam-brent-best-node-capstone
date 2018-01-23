@@ -130,19 +130,9 @@ function startApp() {
       api.details(store.currentUser, wishlist_id)
         .then(response => {
           store.item = response;
-          console.log(response);
-          let place = response.restaurant_id;
-          store.place = place;
-
-          // window.marker1.setPlace({
-          //   placeId: place.place_id,
-          //   location: place.geometry.location
-          // });
-          // window.marker1.setVisible(true);
-          // window.infowindow.setContent(window.renderRestaurantInfo(place));
-          // window.infowindow.open(window.map, window.marker1);
-
+          store.place = response.restaurant_id;
           store.view = 'detail';
+          render.renderMap(store);
           render.render(store);
         }).catch(err => {
           console.error(err);
