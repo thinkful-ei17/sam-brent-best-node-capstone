@@ -63,7 +63,7 @@ class Api {
 
   createWishlistEntry(id, restaurant){
     const url = this._buildUrl(`/restaurants/${restaurant.place_id}`);
-    
+    console.log(restaurant);
     return fetch(url, {
       method: 'PUT',
       headers: {
