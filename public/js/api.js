@@ -74,7 +74,7 @@ class Api {
     }).then(res => res.json())
       .then(restaurant => {
         const url = this._buildUrl(`/users/${id}/wishlist/${restaurant._id}`);
-        
+        console.log(restaurant);
         return fetch(url, {
           method: 'POST',
           headers: {
