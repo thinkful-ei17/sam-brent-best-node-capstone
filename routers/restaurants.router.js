@@ -2,7 +2,7 @@
 
 const express = require('express');
 
-const { Restaurant, User } = require('../models');
+const { Restaurant } = require('../models');
 
 const router = express.Router();
 
