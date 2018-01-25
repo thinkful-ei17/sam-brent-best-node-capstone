@@ -10,10 +10,7 @@ const restaurantSchema = new mongoose.Schema({
   formatted_phone_number: String,
   website: String,
   opening_hours:[String],
-  position:{
-    lat:Number,
-    lng:Number
-  }
+  geometry: Object
 });
 
 const Restaurant = mongoose.model('Restaurant', restaurantSchema);

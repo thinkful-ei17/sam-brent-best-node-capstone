@@ -9,7 +9,7 @@ const router = express.Router();
 // UPSERT a Restaurant
 
 router.put('/:placeId', (req, res) => {
-  const {name, place_id, formatted_address, formatted_phone_number, website, opening_hours} = req.body;
+  const {name, place_id, formatted_address, formatted_phone_number, website, opening_hours, geometry} = req.body;
 
   Restaurant
     .findOneAndUpdate(
@@ -23,10 +23,7 @@ router.put('/:placeId', (req, res) => {
         formatted_phone_number,
         website,
         opening_hours: opening_hours.weekday_text,
-        position: {
-          lat: req.body.geometry.location.lat,
-          lng: req.body.geometry.location.lng
-        }
+        geometry
       },
       {
         upsert: true,

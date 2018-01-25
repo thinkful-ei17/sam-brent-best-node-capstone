@@ -11,6 +11,7 @@ function startApp() {
   $(() => {
     createMap((place) => {
       store.place = place;
+      console.log(place);
     });
 
     api.searchAll()
@@ -129,7 +130,9 @@ function startApp() {
       api.details(store.currentUser, wishlist_id)
         .then(response => {
           store.item = response;
+          store.place = response.restaurant_id;
           store.view = 'detail';
+          render.renderMap(store);
           render.render(store);
         }).catch(err => {
           console.error(err);
