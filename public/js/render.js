@@ -41,7 +41,6 @@ class Render {
     </li>`;
   }
 
-  // UPDATE WITH ALL DESIRED INFORMATION FOR DETAILED VIEW (HOURS, WEBSITE, ETC.)
   generateDetailedRestaurantElement(restaurant) {
     const hours = restaurant.restaurant_id.opening_hours;
 
@@ -69,7 +68,6 @@ class Render {
     </li>`;
   }
 
-  // UPDATE WITH ALL DESIRED INFORMATION FOR DETAILED VIEW (HOURS, WEBSITE, ETC.)
   generateEditingRestaurantElement(restaurant) {
     const hours = restaurant.restaurant_id.opening_hours;
     return `

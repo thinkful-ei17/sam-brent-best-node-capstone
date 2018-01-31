@@ -11,7 +11,6 @@ function startApp() {
   $(() => {
     createMap((place) => {
       store.place = place;
-      console.log(place);
     });
 
     api.searchAll()
@@ -52,9 +51,9 @@ function startApp() {
 
     $('.js-editing').on('click', '.js-remove-restaurant-button', function (event) {
       event.preventDefault();
-      let wishlist_id = $(this).closest('li').attr('id');
+      const wishlistId = $(this).closest('li').attr('id');
       
-      return api.removeWishlistEntry(store.currentUser, wishlist_id)
+      return api.removeWishlistEntry(store.currentUser, wishlistId)
         .then(() => {
           return api.searchOne(store.currentUser);
         })
@@ -70,13 +69,13 @@ function startApp() {
     $('.js-editing').on('click', '.js-update-restaurant-button', function (event) {
       event.preventDefault();
       const updatedNotes = $('textarea#notes').val();
-      const wishlist_id = store.item._id;
+      const wishlistId = store.item._id;
       const entry = {
         rating: null,
         notes: updatedNotes
       };
 
-      api.updateWishlistEntry(store.currentUser, wishlist_id, entry)
+      api.updateWishlistEntry(store.currentUser, wishlistId, entry)
         .then((response) => {
           store.item = response.wishlist[0];
           store.view = 'detail';
@@ -96,8 +95,8 @@ function startApp() {
 
     $('.js-restaurant-detail').on('click', '.js-remove-restaurant-button', function (event) {
       event.preventDefault();
-      let wishlist_id = $(this).closest('li').attr('id');
-      return api.removeWishlistEntry(store.currentUser, wishlist_id)
+      const wishlistId = $(this).closest('li').attr('id');
+      return api.removeWishlistEntry(store.currentUser, wishlistId)
         .then(() => {
           return api.searchOne(store.currentUser);
         })
@@ -126,8 +125,8 @@ function startApp() {
 
     $('.js-restaurant-list').on('click', '.js-view-restaurant-button', function (event) {
       event.preventDefault();
-      let wishlist_id = $(this).closest('li').attr('id');
-      api.details(store.currentUser, wishlist_id)
+      const wishlistId = $(this).closest('li').attr('id');
+      api.details(store.currentUser, wishlistId)
         .then(response => {
           store.item = response;
           store.place = response.restaurant_id;
@@ -151,6 +150,5 @@ function startApp() {
           console.error(err);
         });
     });
-    //hidden checkbox shows on success?
   });
 }

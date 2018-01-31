@@ -29,26 +29,6 @@ function createMap(updatePlace) {
     zoom: 13
   });
   window.map = map;
-  
-  ////////////////////////////////////////////////////////////
-  // Create markers.
-  // features.forEach(function (feature) {
-  //   const marker = new google.maps.Marker({
-  //     position: feature.position,
-  //     map: map
-  //   });
-  // });
-  // function addMarker(info) {
-  //   console.log(info);
-  //   console.log('this is running');
-  //   const marker = new google.maps.Marker({
-  //     position: info.position,
-  //     map: map,
-  //     content:[info.content]
-  //   });
-  //   infowindow.setContent(`<div><strong>${info.content}</strong></div>`);
-  //   infowindow.open(map, this);
-  // }
 
   const input = document.getElementById('pac-input');
 
@@ -79,10 +59,9 @@ function createMap(updatePlace) {
       map.setCenter(place.geometry.location);
       map.setZoom(17);
     }
+    
     updatePlace(place);
-    // Set the position of the marker using the place ID and location.
-    //foreach items hour array append all
-  
+
     marker1.setPlace({
       placeId: place.place_id,
       location: place.geometry.location
