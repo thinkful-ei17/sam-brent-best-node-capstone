@@ -8,6 +8,5 @@ class Store {
     this.item = null;
     this.place = null;
     this.currentUser = null;
-    this.alreadyAdded = false;
   }
 }

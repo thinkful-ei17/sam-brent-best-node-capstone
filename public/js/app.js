@@ -146,17 +146,14 @@ function startApp() {
         .then(user => {
           for (let i=0; i<user.wishlist.length; i++) {
             if (user.wishlist[i].restaurant_id.placeId === store.place.place_id) {
-              store.alreadyAdded = true;
-              return $(this).text('Already on Wishlist');
-            } else {
-              $(this).text('ADDED!');
+              $(this).text('Already on Wishlist');
+              return Promise.resolve(false);
             }
-          } if (!store.alreadyAdded) {
-            return api.createWishlistEntry(store.currentUser, store.place);
-          }
+          } 
+          return api.createWishlistEntry(store.currentUser, store.place);
         }).then(response => {
-          store.alreadyAdded = false;
-          if (response._id) {
+          if (response) {
+            $(this).text('ADDED!');
             store.data = response;
             render.render(store);
           }
