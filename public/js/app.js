@@ -142,10 +142,24 @@ function startApp() {
 
     $('#whole-map').on('click', '.js-wishlist-button', function (event) {
       event.preventDefault();
-      api.createWishlistEntry(store.currentUser, store.place)
-        .then(response => {
-          store.data = response;
-          render.render(store);
+      api.searchOne(store.currentUser)
+        .then(user => {
+          for (let i=0; i<user.wishlist.length; i++) {
+            if (user.wishlist[i].restaurant_id.placeId === store.place.place_id) {
+              store.alreadyAdded = true;
+              return $(this).text('Already on Wishlist');
+            } else {
+              $(this).text('ADDED!');
+            }
+          } if (!store.alreadyAdded) {
+            return api.createWishlistEntry(store.currentUser, store.place);
+          }
+        }).then(response => {
+          store.alreadyAdded = false;
+          if (response._id) {
+            store.data = response;
+            render.render(store);
+          }
         }).catch(err => {
           console.error(err);
         });
