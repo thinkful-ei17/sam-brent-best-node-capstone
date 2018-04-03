@@ -45,7 +45,9 @@ class Api {
       headers: {
         'Accept': 'application/json'
       }
-    }).then(res => res.json());
+    }).then(res => {
+      return res.json();
+    });
   }
 
   create(user) {
