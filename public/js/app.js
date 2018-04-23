@@ -145,7 +145,7 @@ function startApp() {
       api.searchOne(store.currentUser)
         .then(user => {
           for (let i=0; i<user.wishlist.length; i++) {
-            if (user.wishlist[i].restaurant_id.placeId === store.place.place_id) {
+            if (user.wishlist[i].restaurant_id.placeId === store.place.place_id || store.place.place_id === undefined) {
               $(this).text('Already on Wishlist');
               return Promise.resolve(false);
             }
