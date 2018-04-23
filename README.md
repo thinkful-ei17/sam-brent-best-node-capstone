@@ -2,6 +2,8 @@
 
 Wishlist is an app that allows users to record restaurants they want to visit. Plugging into the Google Maps and Google Places APIs, the app automatically stores a restaurant's crucial information like location and hours, while also allowing the user to add their own notes based on friend's recommendations or their own personal experiences. Never again forget the name of that great spot your friend said you have to try!
 
+Live Site: https://agile-scrubland-93857.herokuapp.com/
+
 Restaurant Search:
 ----------------------------------------------------------------------------------------------
 ![RestaurantSearch](./screenshots/wishlist-restaurant-search.png "RestaurantSearch")
@@ -9,6 +11,16 @@ Restaurant Search:
 Individual Restaurant View:
 ----------------------------------------------------------------------------------------------
 ![RestaurantView](./screenshots/wishlist-restaurant-view.png "RestaurantView")
+
+## Technology Stack
+
+Front End: HTML, CSS, Javascript
+
+Back End: Node.js, Express.js
+
+Database: MongoDB
+
+Hosting Services: Heroku, mLab
 
 ## CRUD Operations Breakdown
 CREATE;
