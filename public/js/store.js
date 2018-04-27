@@ -8,6 +8,6 @@ class Store {
     this.item = null;
     this.place = null;
     this.currentUser = null;
-    this.about = false;
+    this.about = true;
   }
 }

@@ -41,15 +41,22 @@ h2 {
   left: 5px;
 }
 
+.about-close-button {
+  display: block;
+  margin: 10px auto;
+}
+
 #about {
   z-index: 3;
   position: fixed;
-  top: 400px;
-  left: 100px;
+  top: 325px;
+  left: 50%;
+  margin-left: -200px;
   width: 400px;
   font-size: 20px;
   font-weight: bold;
   color: #064a5f;
+  line-height: 1.4em;
   padding: 20px;
   background: #fff;
   border-radius: 8px;
