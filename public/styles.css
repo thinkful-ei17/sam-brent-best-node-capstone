@@ -5,12 +5,13 @@ h1 {
 ul {
     list-style-type: none;
     padding: 0px;
+    margin-top: 0px;
 }
 
 li {
     border: solid 1px gray;
     padding: 10px;
-    margin: 10px 15px;
+    margin: 0px 15px 10px 15px;
 }
 
 h2 {
