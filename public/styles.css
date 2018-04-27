@@ -4,6 +4,7 @@ h1 {
 
 ul {
     list-style-type: none;
+    padding: 0px;
 }
 
 li {
@@ -60,10 +61,9 @@ margin-right:auto;
 }
 
 #whole-map {
-  padding-top: 250px;
-  margin:auto;
-  height: 66%;
-  width: 66%;
+  padding: 50px 25px 25px 25px;
+  height: 600px;
+  width: 100%;
 }
 
 html,
@@ -109,5 +109,14 @@ body {
 
 #map #infowindow-content {
   display: inline;
+}
+
+.content-container {
+  display: flex;
+  padding-top: 250px;
+}
+
+.wishlist-content {
+  width: 100%;
 }
 
