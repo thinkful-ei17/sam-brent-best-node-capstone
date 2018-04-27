@@ -141,6 +141,8 @@ body {
 
 .wishlist-content {
   width: calc(100% - 625px);
+  width: -webkit-calc(100% - 625px);
+  width: -moz-calc(100% - 625px);
   margin: 68px 25px 25px 625px;
 }
 
