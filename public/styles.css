@@ -10,7 +10,7 @@ ul {
 li {
     border: solid 1px gray;
     padding: 10px;
-    margin: 10px;
+    margin: 10px 15px;
 }
 
 h2 {
@@ -137,20 +137,22 @@ body {
 .content-container {
   display: flex;
   padding-top: 250px;
+  max-width: fit-content;
+  margin: auto;
 }
 
 .wishlist-content {
-  width: calc(100% - 625px);
-  width: -webkit-calc(100% - 625px);
-  width: -moz-calc(100% - 625px);
-  margin: 68px 25px 25px 625px;
+  width: 425px;
+  margin: 0px 25px 25px 625px;
 }
 
 .your-wishlist-header {
   display: block;
-  position: fixed;
-  left: 625px;
-  width: calc(100% - 625px);
-  margin-left: 10px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 250px;
+  padding: 20px 15px;
+  margin: 0px;
+  width: 425px;
   background-color: white;
 }
