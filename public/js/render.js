@@ -9,7 +9,11 @@ class Render {
 
   renderPage(store) {
     $('.view').hide();
+    $('#about').hide();
     $(`#${store.view}`).show();
+    if (store.about) {
+      $('#about').show();
+    }
   }
 
   renderMap(store){

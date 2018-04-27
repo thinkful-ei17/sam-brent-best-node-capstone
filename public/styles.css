@@ -13,6 +13,10 @@ li {
     margin: 10px;
 }
 
+h2 {
+  color: #064a5f;
+}
+
 #user-name{
   background-color:#064a5f;
   color:white;
@@ -28,6 +32,12 @@ li {
   right: 5px;
   position: absolute;
   z-index: 3;
+}
+
+.about-modal-button {
+  position: fixed;
+  top: 217px;
+  left: 5px;
 }
 
 .container {  
@@ -117,10 +127,6 @@ body {
 .wishlist-content {
   width: calc(100% - 625px);
   margin: 68px 25px 25px 625px;
-}
-
-h2 {
-  color: #064a5f;
 }
 
 .your-wishlist-header {
