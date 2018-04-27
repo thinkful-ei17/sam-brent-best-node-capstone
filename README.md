@@ -51,8 +51,9 @@ Users should be able to add a review of a restaurant on their list
 
 ## What's next for Wishlist?
 
-The next hurdle for Wishlist is about making interactions between users easier. We want to make it easy for users to share restaurant recommendations with each other, so that when you're visiting a new city it is easy for your friends to give you recommendations of where you should eat.
+The next hurdle for Wishlist is mobile functionality. We want to allow users to easily view the app on the go,so it's fast and easy to take down recommendations wherever you are.
 
+We also want to build out the capacity for facilitating interactions between users easier. We want to make it easy for users to share restaurant recommendations with each other, so that when you're visiting a new city it is easy for your friends to give you recommendations of where you should eat by just sending along restaurants from their wishlist.
 
 Technically we also want to make it possible to view all of the restaurants on a users Wishlist at one time. This will require taking advantage of marker clustering (more information below), so that areas densely populated with great restaurants are represented accordingly.
 
