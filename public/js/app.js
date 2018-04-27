@@ -40,6 +40,14 @@ function startApp() {
         });
 
     });
+
+    // ABOUT MODAL EVENT LISTENER
+
+    $('.js-about').on('click', function (event) {
+      event.preventDefault();
+      store.about = !store.about;
+      render.render(store);
+    });
     
     // EDIT VIEW EVENT LISTENERS
 
